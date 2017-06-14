@@ -1,0 +1,139 @@
+
+# Created by https://www.gitignore.io/api/java,macos,eclipse,windows,java-web
+
+### Eclipse ###
+
+GemVideo/.metadata
+GemVideo/bin/
+GemVideo/tmp/
+GemVideo/*.tmp
+GemVideo/*.bak
+GemVideo/*.swp
+GemVideo/*~.nib
+GemVideo/local.properties
+GemVideo/.settings/
+GemVideo/.loadpath
+GemVideo/.recommenders
+
+# External tool builders
+GemVideo/.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+GemVideo/*.launch
+
+# PyDev specific (Python IDE for Eclipse)
+GemVideo/*.pydevproject
+
+# CDT-specific (C/C++ Development Tooling)
+GemVideo/.cproject
+
+# Java annotation processor (APT)
+GemVideo/.factorypath
+
+# PDT-specific (PHP Development Tools)
+GemVideo/.buildpath
+
+# sbteclipse plugin
+GemVideo/.target
+
+# Tern plugin
+GemVideo/.tern-project
+
+# TeXlipse plugin
+GemVideo/.texlipse
+
+# STS (Spring Tool Suite)
+GemVideo/.springBeans
+
+# Code Recommenders
+GemVideo/.recommenders/
+
+# Scala IDE specific (Scala & Java development for Eclipse)
+.cache-main
+.scala_dependencies
+.worksheet
+
+### Eclipse Patch ###
+# Eclipse Core		
+GemVideo/.project
+
+# JDT-specific (Eclipse Java Development Tools)		
+GemVideo/.classpath
+
+### Java ###
+# Compiled class file
+GemVideo/*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+### Java-Web ###
+## ignoring target file
+target/
+
+### macOS ###
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+### Windows ###
+# Windows thumbnail cache files
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# End of https://www.gitignore.io/api/java,macos,eclipse,windows,java-web

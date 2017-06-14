@@ -18,18 +18,18 @@
 						http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 
-<context:component-scan base-package="modelo,controlador" />
+<context:component-scan base-package="modelo,controladores" />
 <tx:annotation-driven/>
 <jpa:repositories base-package="modelo.dao"></jpa:repositories>
 <mvc:annotation-driven />
-<bean id="localeResolver"
-        class="org.springframework.web.servlet.i18n.CookieLocaleResolver"/>
+<!-- <bean id="localeResolver" -->
+<!--         class="org.springframework.web.servlet.i18n.CookieLocaleResolver"/> -->
         
  <mvc:interceptors>
- <bean class="interceptores.InterceptorAutenticacion" id="Autenticacion"></bean>
- <bean class="interceptores.ActualizarUsuarioEnSession" id="Actualizar" autowire="byType"/> 
- <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-</bean>
+ 	<bean class="interceptores.InterceptorAutenticacion" id="Autenticacion"></bean>
+ 	<bean class="interceptores.ActualizarUsuarioEnSession" id="Actualizar" autowire="byType"/> 
+<!--  <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"></bean> -->
+
  </mvc:interceptors>
   
 <bean id="viewResolver"
@@ -37,6 +37,7 @@
 		<property name="prefix" value="/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+	
 <bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basenames">

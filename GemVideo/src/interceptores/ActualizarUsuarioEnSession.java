@@ -25,7 +25,6 @@ public class ActualizarUsuarioEnSession implements HandlerInterceptor{
 			throws Exception {
 		if(mav.getViewName().equals("home") || mav.getViewName().equals("playVideo")
 				|| mav.getViewName().equals("mostrarArtista")){
-			System.out.println("Voy a Actualizar el usuario de session");
 			Usuario viejo= (Usuario)request.getSession().getAttribute("usuario");
 			Usuario user = usuarioGestion.obtenerPerfil(viejo.getNombre());
 			request.getSession().setAttribute("usuario", user);

@@ -553,3 +553,63 @@ html,
         -webkit-text-decoration-style: none;
         text-decoration-style: none;
         list-style: none; }
+
+/*css gabi..........................*/
+
+
+
+
+.main2 {
+  display: -webkit-box;
+  display: -webkit-left;
+  display: -ms-flexbox;
+  display: flex;
+ -webkit-box-pack: center;
+-webkit-justify-content: center;
+ -ms-flex-pack: left;
+
+  justify-content: space-around;
+  width: 900px;
+
+  margin-top: 60px;
+margin-left: -50px ;
+}
+  .main-video2 {
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 30%;
+
+}
+    .main-video2 .video {
+      width: 100%; }
+    
+
+/*detalle de los mini videos*/
+
+
+ .main-video2 .detalleVideo2 {
+      width: 60%;
+      color: #fff; }
+      .main-video2 .detalleVideo-up2 {
+        margin: 0 30px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between; }
+        .main-video2 .detalleVideo-up2 h2 {
+          font-family: "Rock Salt", cursive;
+          border-bottom: 2px solid orange; }
+        .main-video2 .detalleVideo-up2 .agregarVideo {
+          font-family: "Rock Salt", cursive;
+          font-size: 0.9em;
+          background-color: orange;
+          line-height: 30px;
+          border-radius: 20px;
+          padding: 0 10px;
+          color: #3F002E; }
+          .main-video2 .detalleVideo-up2 
+        font-family: "Oswald", sans-serif;
+        margin: 23px 20px; }

@@ -5,6 +5,81 @@
 /* Large devices (large desktops, 1200px and up) */
 /* TEMA = constants : (colores, estilos, fuentes) */
 /* MODULOS = (botones, iconos, widget):varibles @mixin.., @extend... */
+.busqueda {
+  margin-top: 5px;
+  width: 50%; }
+  .busqueda .login {
+    height: auto;
+    margin: 0 auto; }
+
+.usuario {
+  border-bottom: 3px solid #fff;
+  font-family: "Rock Salt", cursive;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 70px;
+  line-height: 40px; }
+  .usuario span {
+    font-size: 0.9em;
+    float: right;
+    width: 100%;
+    color: #fff; }
+  .usuario-content {
+    padding: 5px;
+    margin-right: 50px; }
+    .usuario-content a:nth-child(3):hover {
+      color: rgba(190, 127, 173, 0.9); }
+    .usuario-content .logout {
+      font-family: "Oswald", sans-serif;
+      margin-left: 10px;
+      padding: 5px;
+      border-radius: 10px;
+      background-color: rgba(190, 127, 173, 0.9); }
+      .usuario-content .logout:hover {
+        color: rgba(190, 127, 173, 0.9);
+        background-color: #fff; }
+
+.item {
+  z-index: 0;
+  width: 25%;
+  height: 250px;
+  margin-bottom: 50px;
+  position: relative;
+  font-size: 0.6em; }
+  .item img {
+    z-index: -1;
+    position: absolute;
+    width: 90%;
+    height: 250px;
+    margin-left: 5%;
+    -webkit-box-shadow: 0 10px 6px -6px #BE7FAD;
+    box-shadow: 0 10px 6px -6px #BE7FAD; }
+  .item .titulo {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 90%;
+    line-height: 30px;
+    margin-left: 5%;
+    z-index: 1;
+    background-color: rgba(95, 16, 73, 0.5); }
+    .item .titulo h3 {
+      margin-left: 5px;
+      font-family: "Rock Salt", cursive; }
+    .item .titulo .linkArtista {
+      margin-right: 5px;
+      display: block;
+      text-align: right; }
+      .item .titulo .linkArtista:hover {
+        color: rgba(190, 127, 173, 0.8); }
+
 /* ESTADOS = accion a un evento de javascript: .is-hide/.is-show */
 .isHide {
   display: none; }
@@ -178,8 +253,24 @@ summary {
 
 /* LAYOUT= maquetacion myStyle */
 html,
-body {
-  height: 100%; }
+.body {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: rgba(63, 0, 46, 0.9); }
+
+.container {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1; }
 
 .content {
   position: fixed;
@@ -210,8 +301,9 @@ body {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%); }
   .content-nav {
-    position: relative;
-    z-index: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -221,7 +313,7 @@ body {
     -ms-flex-pack: justify;
     justify-content: space-between;
     height: 80px;
-    background-color: rgba(63, 0, 46, 0.1); }
+    background-color: rgba(63, 0, 46, 0); }
     .content-nav .logo {
       color: #fff;
       font-family: "Rock Salt", cursive;
@@ -239,6 +331,7 @@ body {
           text-align: center;
           margin: 5px auto; } }
     .content-nav .social {
+      z-index: 0;
       color: #fff;
       margin-top: 25px;
       margin-right: 40px; }
@@ -262,7 +355,7 @@ body {
           padding-top: 10px;
           background-color: rgba(63, 0, 46, 0.2); } }
   .content-header {
-    font-family: "Nobile", sans-serif;
+    font-family: "Oswald", sans-serif;
     border-radius: 20px;
     background-color: rgba(63, 0, 46, 0);
     position: relative;
@@ -306,16 +399,16 @@ body {
       border: none;
       background-color: transparent;
       font-size: 1.3em;
-      font-family: "Nobile", sans-serif;
+      font-family: "Oswald", sans-serif;
       color: #fff;
       z-index: 100; }
       .login .field input:focus {
         outline: none; }
     .login .field i {
       margin-left: 20px;
-      line-height: 58px;
+      line-height: 48px;
       color: #fff;
-      height: 50px;
+      height: 40px;
       border-radius: 20px 0 0 20px; }
   .login input[type="submit"] {
     margin: 0 auto;
@@ -323,7 +416,7 @@ body {
     color: #3F002E;
     width: 35%;
     font-size: 1.3em;
-    font-family: "Nobile", sans-serif;
+    font-family: "Oswald", sans-serif;
     text-align: center;
     border: none; }
     .login input[type="submit"]:hover {
@@ -333,7 +426,7 @@ body {
       line-height: 30px; }
 
 .registro {
-  font-family: "Nobile", sans-serif;
+  font-family: "Oswald", sans-serif;
   position: fixed;
   width: 270px;
   text-align: center;
@@ -341,10 +434,12 @@ body {
   font-size: 1.3em;
   margin-bottom: 100px;
   background-color: rgba(173, 255, 47, 0.7);
-  border-radius: 10px; }
+  border-radius: 10px;
+  text-shadow: 1px 1px 15px grey; }
 
 .text {
   z-index: 0;
+  margin-top: 50px;
   font-family: "Rock Salt", cursive;
   font-size: 2em;
   text-align: center; }
@@ -358,13 +453,19 @@ body {
   color: #fff;
   padding-left: 30px; }
 
+.copyFlex {
+  -webkit-box-flex: 2 !important;
+  -webkit-flex: 2 !important;
+  -ms-flex: 2 !important;
+  flex: 2 !important; }
+
 .parte {
   position: relative;
   display: block; }
 
 .filter1 {
-  -webkit-filter: opacity(0.8);
-  filter: opacity(0.8); }
+  -webkit-filter: opacity(0.6);
+  filter: opacity(0.6); }
 
 .btnRegistro {
   background-color: rgba(255, 255, 255, 0.8) !important;
@@ -377,3 +478,21 @@ body {
 
 .borderBlack {
   border: 5px solid #000 !important; }
+
+.videos {
+  width: 800px;
+  margin: 0 auto;
+  font-family: "Noto Sans", sans-serif;
+  color: #fff;
+  margin-bottom: 40px; }
+  .videos h2 {
+    margin: 10px 10px; }
+  .videos-lista {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    width: 100%; }

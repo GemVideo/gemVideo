@@ -56,10 +56,10 @@ $font-size-small:0.9em;
 $font-size-small-x:0.5em;
 $font1: 'Rock Salt',
 cursive;
-$font2: 'Nobile',
+$font2: 'Oswald',
 sans-serif;
-$font3: 'Press Start 2P',
-cursive;
+$font3: 'Noto Sans',
+sans-serif;
 
 /* MODULOS = (botones, iconos, widget):varibles @mixin.., @extend... */
 
@@ -68,6 +68,96 @@ cursive;
 // border-radius: radius;
 // }
 // lo implementas --> '.box { @include border-radius(10px); }'
+.busqueda {
+    margin-top: 5px;
+    width: 50%;
+    .login {
+        height: auto;
+        margin: 0 auto;
+    }
+}
+
+.usuario {
+    border-bottom: 3px solid #fff;
+    font-family: $font1;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: 70px;
+    line-height: 40px;
+    span {
+        font-size: $font-size-small;
+        float: right;
+        width: 100%;
+        color: #fff;
+    }
+    &-content {
+        //border: 2px solid white;
+        padding: 5px;
+        margin-right: 50px;
+        a:nth-child(3) {
+            //font-family: $font2;
+            &:hover {
+                color: rgba($color-primary-1, 0.9);
+            }
+        }
+        .logout {
+            font-family: $font2;
+            margin-left: 10px;
+            padding: 5px;
+            border-radius: 10px;
+            background-color: rgba($color-primary-1, 0.9);
+            &:hover {
+                color: rgba($color-primary-1, 0.9);
+                background-color: #fff;
+            }
+        }
+    }
+}
+
+.item {
+    z-index: 0;
+    width: 25%;
+    height: 250px;
+    margin-bottom: 50px;
+    position: relative;
+    font-size: $font-size-small-x*1.2;
+    img {
+        z-index: -1;
+        position: absolute;
+        width: 90%;
+        height: 250px;
+        margin-left: 5%;
+     box-shadow: 0 10px 6px -6px $color-primary-1;
+      //  box-shadow: 1px 2px 7px $color-primary-2;
+    }
+    .titulo {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 90%;
+        line-height: 30px;
+        margin-left: 5%; //margin:  0 auto;
+        z-index: 1;
+        //padding: 0 5px;
+        //padding: 10px 0; //margin-left: 20px;
+        background-color: rgba($color-primary-3, 0.5);
+        h3 {
+            margin-left: 5px;
+            font-family: $font1;
+        }
+        .linkArtista {
+             margin-right: 5px;
+            display: block;
+           text-align: right;
+            &:hover{
+                 color: rgba($color-primary-1, 0.8);
+//text-shadow: 1px 1px 20px #fff;
+            }
+        }
+    }
+}
+
 
 /* ESTADOS = accion a un evento de javascript: .is-hide/.is-show */
 
@@ -144,7 +234,7 @@ pre {
 }
 
 a {
-    color:#fff;
+    color: #fff;
     text-decoration: none;
     background-color: transparent;
     /* 1 */
@@ -279,8 +369,15 @@ summary {
 /* LAYOUT= maquetacion myStyle */
 
 html,
-body {
-    height: 100%,
+.body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: rgba($color-primary-4, 0.9);
+}
+
+.container {
+    flex: 1;
 }
 
 .content {
@@ -304,12 +401,13 @@ body {
         transform: translate(-50%, -50%);
     }
     &-nav {
-        position: relative;
-        z-index: 0;
+        position: fixed;
+        width: 100%;
+        z-index: 1;
         display: flex;
         justify-content: space-between;
         height: 80px;
-        background-color: rgba($color-primary-4, 0.1);
+        background-color: rgba($color-primary-4, 0);
         .logo {
             color: #fff;
             font-family: $font1;
@@ -328,6 +426,7 @@ body {
             }
         }
         .social {
+            z-index: 0;
             color: #fff;
             margin-top: 25px;
             margin-right: 40px;
@@ -387,15 +486,15 @@ body {
             font-family: $font2;
             color: #fff;
             z-index: 100;
-            &:focus{
-                outline:none;
+            &:focus {
+                outline: none;
             }
         }
         i {
             margin-left: 20px;
-            line-height: 58px;
+            line-height: 48px;
             color: #fff;
-            height: 50px;
+            height: 40px;
             border-radius: 20px 0 0 20px;
         }
     }
@@ -409,7 +508,7 @@ body {
         text-align: center;
         border: none;
         &:hover {
-           background-color: rgba(black, 0.2);
+            background-color: rgba(black, 0.2);
             color: #fff;
             border-radius: 10px;
             line-height: 30px;
@@ -419,57 +518,85 @@ body {
 
 .registro {
     font-family: $font2;
-    position: fixed;;
+    position: fixed;
+    ;
     width: 270px;
     text-align: center;
     bottom: 0;
     font-size: $font-size-medium;
     margin-bottom: 100px;
-    background-color: rgba(greenyellow,0.7);
+    background-color: rgba(greenyellow, 0.7);
     border-radius: 10px;
-}
-.text{
-    z-index: 0;
-    font-family: $font1;
-    font-size: $font-size-large-x;
-   // border: 2px solid green;
-    text-align: center;
-}
-.copy{
-    font-family: $font1;
-    font-size: $font-size-medium*0.8;
-   position: fixed;;
-    width: 100%;
-    bottom: 0;
-    color:#fff;
-    padding-left: 30px;
+    text-shadow: 1px 1px 15px grey;
 }
 
-.content2{
-    //position: relative;
-   // height: 500px;
+.text {
+    z-index: 0;
+    margin-top: 50px;
+    font-family: $font1;
+    font-size: $font-size-large-x; // border: 2px solid green;
+    text-align: center;
 }
+
+.copy {
+    font-family: $font1;
+    font-size: $font-size-medium*0.8;
+    position: fixed;
+    
+    width: 100%;
+    bottom: 0;
+    color: #fff;
+    padding-left: 30px;
+}
+.copyFlex{
+    
+    flex: 2 !important;
+}
+.content2 {
+    //position: relative;
+    // height: 500px;
+}
+
 //cambios
-.parte{
+.parte {
     position: relative;
     display: block;
 }
-.filter1{
-    filter: opacity(0.8);
+
+.filter1 {
+    filter: opacity(0.6);
 }
-.btnRegistro{
+
+.btnRegistro {
     //color:#fff !important;
-    background-color: rgba(#fff,0.8) !important;
+    background-color: rgba(#fff, 0.8) !important;
     border-radius: 10px !important;
+    a {}
 }
-.colorBlack{
+
+.colorBlack {
     color: #000 !important;
-    
-    a{
-       color: #000 !important; 
-       
+    a {
+        color: #000 !important;
     }
 }
-.borderBlack{
-border:5px solid #000 !important; 
+
+.borderBlack {
+    border: 5px solid #000 !important;
+}
+
+.videos {
+    width: 800px;
+    margin: 0 auto;
+    font-family: $font3;
+    color: #fff;
+    margin-bottom: 40px;
+    h2{
+        margin: 10px 10px;
+    }
+    &-lista {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+    }
 }

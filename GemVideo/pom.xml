@@ -33,6 +33,22 @@
 		    <artifactId>jersey-server</artifactId>
 		    <version>2.25.1</version>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.glassfish.jersey.containers/jersey-container-servlet -->
+<dependency>
+    <groupId>org.glassfish.jersey.containers</groupId>
+    <artifactId>jersey-container-servlet</artifactId>
+    <version>2.25.1</version>
+</dependency>
+		
+		
+		<!-- https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-moxy -->
+<dependency>
+    <groupId>org.glassfish.jersey.media</groupId>
+    <artifactId>jersey-media-moxy</artifactId>
+    <version>2.25.1</version>
+</dependency>
+		
 		<dependency>
 		    <groupId>commons-io</groupId>
 		    <artifactId>commons-io</artifactId>

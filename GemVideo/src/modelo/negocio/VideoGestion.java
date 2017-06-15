@@ -41,7 +41,7 @@ public class VideoGestion {
 	}
 
 	public List<Video> obtenerPeliculasHome() {
-		List<Video> videos = videoRepo.findFirst12();
+		List<Video> videos = videoRepo.findFirst12ByOrderByTitulo();
 		return videos;
 	}
 }

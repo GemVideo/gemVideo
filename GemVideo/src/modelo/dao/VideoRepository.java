@@ -18,6 +18,6 @@ public interface VideoRepository extends CrudRepository<Video, Integer>{
 	List<Video> findByTitulo(@Param("nombre")String nombreVideo);
 	void deleteByTitulo(String nombreVideo);
 
-	List<Video> findFirst12();
+	List<Video> findFirst12ByOrderByTitulo();
 	
 }

@@ -496,3 +496,60 @@ html,
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     width: 100%; }
+
+.main {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  width: 900px;
+  margin: 0 auto;
+  margin-top: 50px; }
+  .main-video {
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 73%; }
+    .main-video .video {
+      width: 100%; }
+    .main-video .detalleVideo {
+      width: 100%;
+      color: #fff; }
+      .main-video .detalleVideo-up {
+        margin: 0 20px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between; }
+        .main-video .detalleVideo-up h2 {
+          font-family: "Rock Salt", cursive;
+          border-bottom: 2px solid orange; }
+        .main-video .detalleVideo-up .agregarVideo {
+          font-family: "Rock Salt", cursive;
+          font-size: 0.9em;
+          background-color: orange;
+          line-height: 30px;
+          border-radius: 10px;
+          padding: 0 10px;
+          color: #3F002E; }
+          .main-video .detalleVideo-up .agregarVideo:hover {
+            background-color: white; }
+      .main-video .detalleVideo p {
+        font-family: "Oswald", sans-serif;
+        margin: 20px 20px; }
+  .main-playList {
+    font-family: "Oswald", sans-serif;
+    width: 22%;
+    color: white; }
+    .main-playList .playLists {
+      background-color: orange;
+      line-height: 30px; }
+      .main-playList .playLists li {
+        -webkit-text-decoration-style: none;
+        text-decoration-style: none;
+        list-style: none; }

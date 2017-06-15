@@ -29,7 +29,7 @@ public class InterceptorAutenticacion  implements HandlerInterceptor{
 		if(request.getSession().getAttribute("usuario")!=null)
 			return true;
 		else
-			response.sendRedirect("login.htm");
+			response.sendRedirect("login.do");
 			return false;
 		}else
 		return true;

@@ -5,21 +5,31 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import controladores.Usuario;
+import entidades.Artista;
+import entidades.PlayList;
+import entidades.Usuario;
+import modelo.dao.ArtistaRepository;
+import modelo.dao.PlaylistRepository;
+import modelo.dao.UsuarioRepository;
 
 @Service
 public class UsuarioGestion {
 
-	UsuarioRepotoy usuarioRepo;
+	@Autowired
+	UsuarioRepository usuarioRepo;
+	@Autowired
 	ArtistaRepository artistaRepo;
+	@Autowired
+	PlaylistRepository playlistRepo;
 	
 	public Usuario login(Usuario usuario){
 		
-		Usuario usuarioDDBB = usuarioRepo.find(usuario.getNombre());
+		Usuario usuarioDDBB = usuarioRepo.findOne(usuario.getNombre());
 		
-		if(usuarioDDBB != null && usuarioDDBB.getPassword.equals(usuario.getPassword())){
+		if(usuarioDDBB != null && usuarioDDBB.getPass().equals(usuario.getPass())){
 			return usuarioDDBB;
 		}else
 			return null;
@@ -28,7 +38,7 @@ public class UsuarioGestion {
 	@Transactional
 	public boolean registro(Usuario usuario){
 		
-		if(usuarioRepo.finOne(usuario.getNombre()) != null)
+		if(usuarioRepo.findOne(usuario.getNombre()) != null)
 			return false;
 		else{
 			usuarioRepo.save(usuario);
@@ -43,9 +53,10 @@ public class UsuarioGestion {
 	
 	@Transactional
 	public void crearPlaylist(String nombrePlaylist,String userName){
-		Usuario usuario = usuarioRepo.find(userName);
+		Usuario usuario = usuarioRepo.findOne(userName);
 		PlayList playlist = new PlayList();
 		playlist.setNombre(nombrePlaylist);
+		playlist = playlistRepo.save(playlist);
 		usuario.getPlayLists().add(playlist);
 		usuarioRepo.save(usuario);
 	}
@@ -53,7 +64,7 @@ public class UsuarioGestion {
 	@Transactional
 	public void actualizarArtistaFavorito(Integer idArtist, String userName) {
 		
-		Usuario usuario = usuarioRepo.find(userName);
+		Usuario usuario = usuarioRepo.findOne(userName);
 		
 		List<Artista> artistasFavs = usuario.getArtistasFavoritos();
 			
@@ -68,12 +79,11 @@ public class UsuarioGestion {
 		}
 		
 		if(!esFav){
-			Artista artista = artistaRepo.find(idArtist);
+			Artista artista = artistaRepo.findOne(idArtist);
 			artistasFavs.add(artista);
 		}
 		
 		usuario.setArtistasFavoritos(artistasFavs);
-		
 		usuarioRepo.save(usuario);
 	}
 	

@@ -83,7 +83,8 @@ public class ProcesarFicheros {
 		
 		System.out.println( "finalizado 1" );
 		
-		System.out.println("eeee " +  response.getItems().size());
+		System.out.println("eeee " +  response.getArtist().getName());
+		System.out.println("eeee " +  response.getArtist().getImages().size());
 		System.out.println("");
 		System.out.println("fin proceso de llamada");
 		

@@ -3,14 +3,15 @@ package importarVideos;
 import java.util.List;
 
 public class ResultadosArtista {
-	private List<Artista> items;
+	private Artist artist;
 
-	public List<Artista> getItems() {
-		return items;
+	public Artist getArtist() {
+		return artist;
 	}
 
-	public void setItems(List<Artista> items) {
-		this.items = items;
+	public void setArtist(Artist artist) {
+		this.artist = artist;
 	}
+
 	
 }

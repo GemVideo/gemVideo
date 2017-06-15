@@ -1,6 +1,9 @@
 package importarVideos;
 
+import javax.xml.bind.annotation.XmlElement;
+
 public class Image {
+	@XmlElement(name="#text")
 	private String text;
 	private String size;
 	public String getText() {

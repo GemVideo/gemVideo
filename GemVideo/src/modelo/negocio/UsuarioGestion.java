@@ -1,8 +1,19 @@
 package modelo.negocio;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Service;
+
+import controladores.Usuario;
+
+@Service
 public class UsuarioGestion {
 
-	UsuarioRepo usuarioRepo;
+	UsuarioRepotoy usuarioRepo;
+	ArtistaRepository artistaRepo;
 	
 	public Usuario login(Usuario usuario){
 		
@@ -14,23 +25,54 @@ public class UsuarioGestion {
 			return null;
 	}
 	
+	@Transactional
 	public boolean registro(Usuario usuario){
 		
-		// en funcion a lo que devuelva 
-		usuarioRepo.save(usuario);
+		if(usuarioRepo.finOne(usuario.getNombre()) != null)
+			return false;
+		else{
+			usuarioRepo.save(usuario);
+			return true;
+		}
 	}
 	
 	public Usuario obtenerPerfil(String nombre){
-		Usuario usuario = usuarioRepo.find(nombre);
+		Usuario usuario = usuarioRepo.findOne(nombre);
 		return usuario;
 	}
 	
-	
-	public void crearPlaylist(String nombrePlaylist,Usuario usuario){
-		usuario = usuarioRepo.find(usuario.getNombre());
+	@Transactional
+	public void crearPlaylist(String nombrePlaylist,String userName){
+		Usuario usuario = usuarioRepo.find(userName);
 		PlayList playlist = new PlayList();
 		playlist.setNombre(nombrePlaylist);
 		usuario.getPlayLists().add(playlist);
+		usuarioRepo.save(usuario);
+	}
+
+	@Transactional
+	public void actualizarArtistaFavorito(Integer idArtist, String userName) {
+		
+		Usuario usuario = usuarioRepo.find(userName);
+		
+		List<Artista> artistasFavs = usuario.getArtistasFavoritos();
+			
+		boolean esFav = false;
+		for (Artista artista : artistasFavs) {
+			if(artista.getId() == idArtist){
+				esFav = true;
+				artistasFavs.remove(artista);
+				//si falla, coger este artista y removerlo fuera del for
+				break;
+			}
+		}
+		
+		if(!esFav){
+			Artista artista = artistaRepo.find(idArtist);
+			artistasFavs.add(artista);
+		}
+		
+		usuario.setArtistasFavoritos(artistasFavs);
 		
 		usuarioRepo.save(usuario);
 	}

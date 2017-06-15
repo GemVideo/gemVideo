@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -29,7 +30,7 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/login.do")
-	public String login(@ModelAttribute("loginCommand") Usuario usuario,
+	public String login(@ModelAttribute("loginCommand")Usuario usuario,
 			BindingResult binding, Model modelo) {
 		if (!binding.hasErrors()) {
 			Usuario user= usuarioGestion.login(usuario);
@@ -58,7 +59,7 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/registro.do")
-	public String registro(@ModelAttribute("registroCommand") Usuario usuario, BindingResult binding) {
+	public String registro(@ModelAttribute("registroCommand")Usuario usuario, BindingResult binding) {
 		if (!binding.hasErrors()) {
 			if (usuarioGestion.registro(usuario)) {
 				return "redirect:/login.do";
@@ -72,14 +73,20 @@ public class UsuarioController {
 	
 	@RequestMapping("/crearPlaylist.do")
 	public String crearPlaylist(@RequestParam("nombrePlaylist")String nombrePlaylist,
-			HttpSession sesion){
+			@SessionAttribute("usuario")Usuario usuario){		
 		
-		Usuario usuario = (Usuario)sesion.getAttribute("usuario");
-		usuarioGestion.crearPlaylist(nombrePlaylist, usuario);
+		usuarioGestion.crearPlaylist(nombrePlaylist, usuario.getNombre());
 		
 		return "playVideo";
 	}
 	
-	
+	@RequestMapping("/actualizarArtistaFavorito.do")
+	public String actualizarArtista(@RequestParam("idArtist")Integer idArtist,
+			@SessionAttribute("usuario")Usuario usuario){
+		
+			usuarioGestion.actualizarArtistaFavorito(idArtist,usuario.getName());
+			
+			return "mostrarArtista";
+	}
 	
 }

@@ -1,16 +1,16 @@
 package modelo.negocio;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import controladores.List;
-import controladores.Video;
 
 @Service
 public class VideoGestion {
 
-	VideoRepo videoRepo;
+	VideoRepository videoRepo;
 	PlaylistRepository playlistRepo;
 	
 	public Video playVideo(Integer idVideo){
@@ -30,5 +30,10 @@ public class VideoGestion {
 		
 		List<Video> videos = videoRepo.buscarVideosPorNombre(busqueda);
 		return videos;
+	}
+
+	public List<Video> obtenerPeliculasHome() {
+		return videoRepo.obtenerPeliculasHome();
+		
 	}
 }

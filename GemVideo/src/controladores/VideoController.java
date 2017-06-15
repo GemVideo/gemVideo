@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import entidades.Artista;
+import entidades.Video;
 import modelo.negocio.ArtistaGestion;
 import modelo.negocio.VideoGestion;
 
@@ -28,9 +30,9 @@ public class VideoController {
 	@RequestMapping("/home.do")
 	public String obtenerVideos(Model model){
 		
-		List<Video> peliculasHome = videoGestion.obtenerPeliculasHome();
-		model.addAttribute("videosHome", peliculasHome);
-		//el usuario ya debe estar en sesión
+		List<Video> videosHome = videoGestion.obtenerPeliculasHome();
+		model.addAttribute("videosHome", videosHome);
+		
 		return "home";
 	}
 	
@@ -55,7 +57,7 @@ public class VideoController {
 	}
 	
 	@RequestMapping("/buscar.do")
-	public String buscar(@RequestParam("busqueda")String busqueda, Model model){ 		
+	public String buscar(@RequestParam("busqueda")String busqueda, Model model){		
 		
 		List<Video> videos = videoGestion.buscarVideos(busqueda);
 		List<Artista> artistas = artistaGestion.buscarArtistas(busqueda);

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import entidades.Usuario;
 import modelo.negocio.UsuarioGestion;
 
 public class ActualizarUsuarioEnSession implements HandlerInterceptor{

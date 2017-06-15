@@ -1,8 +1,9 @@
 package modelo.dao;
 import org.springframework.data.repository.CrudRepository;
 
+import entidades.PlayList;
 import entidades.Usuario;
 
-public interface UsuarioRepository extends CrudRepository<Usuario, String>  {
+public interface PlaylistRepository extends CrudRepository<PlayList, Integer> {
 
 }

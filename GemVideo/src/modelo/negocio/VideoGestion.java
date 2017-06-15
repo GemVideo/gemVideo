@@ -1,34 +1,47 @@
 package modelo.negocio;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import controladores.List;
-import controladores.Video;
+import entidades.PlayList;
+import entidades.Video;
+import modelo.dao.PlaylistRepository;
+import modelo.dao.VideoRepository;
+
 
 @Service
 public class VideoGestion {
 
-	VideoRepo videoRepo;
+	@Autowired
+	VideoRepository videoRepo;
+	@Autowired
 	PlaylistRepository playlistRepo;
 	
 	public Video playVideo(Integer idVideo){
-		Video video = videoRepo.find(idVideo);
+		Video video = videoRepo.findOne(idVideo);
 		return video;
 	}
 	
 	@Transactional
 	public void actualizarPlaylist(Integer idPlaylist, Integer idVideo) {
-		Video video = videoRepo.find(idVideo);
-		PlayList playlist = playlistRepo.find(idPlaylist);
+		Video video = videoRepo.findOne(idVideo);
+		PlayList playlist = playlistRepo.findOne(idPlaylist);
 		playlist.getListaVideos().add(video);
 		playlistRepo.save(playlist);
 	}
 
 	public List<Video> buscarVideos(String busqueda) {
 		
-		List<Video> videos = videoRepo.buscarVideosPorNombre(busqueda);
+		List<Video> videos = videoRepo.findByTitulo(busqueda);
+		return videos;
+	}
+
+	public List<Video> obtenerPeliculasHome() {
+		List<Video> videos = videoRepo.findFirst12();
 		return videos;
 	}
 }

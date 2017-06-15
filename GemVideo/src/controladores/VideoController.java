@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import modelo.negocio.ArtistaGestion;
@@ -27,6 +28,8 @@ public class VideoController {
 	@RequestMapping("/home.do")
 	public String obtenerVideos(Model model){
 		
+		List<Video> peliculasHome = videoGestion.obtenerPeliculasHome();
+		model.addAttribute("videosHome", peliculasHome);
 		//el usuario ya debe estar en sesión
 		return "home";
 	}
@@ -39,11 +42,10 @@ public class VideoController {
 		
 		return "playVideo";
 	}
-	
 
 	//para actualizarla le añado el video a la playlist, sin tocar el usuario, que se
 	//refresca en sesion al retornar a playVideo.jsp (con interceptor)
-	@RequestMapping("/actualizarPlaylist.do")
+	@RequestMapping( "/actualizarPlaylist.do")
 	public String actualizarPlaylist(@RequestParam("idPlaylist")Integer idPlaylist,
 			@RequestParam("idVideo")Integer idVideo, Model model){
 		
@@ -52,9 +54,8 @@ public class VideoController {
 		return "playVideo";
 	}
 	
-	@PostMapping("/buscar.do")
-	public String buscar(HttpServletRequest req,Model model){ //¿podria recibirse de otra forma?
-		String busqueda = req.getParameter("busqueda");
+	@RequestMapping("/buscar.do")
+	public String buscar(@RequestParam("busqueda")String busqueda, Model model){ 		
 		
 		List<Video> videos = videoGestion.buscarVideos(busqueda);
 		List<Artista> artistas = artistaGestion.buscarArtistas(busqueda);

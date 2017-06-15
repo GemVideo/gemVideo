@@ -2,6 +2,8 @@ package importarVideos;
 
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlRootElement;
+@XmlRootElement
 public class Artist {
 	private String name;
 	private String mbid;

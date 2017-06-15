@@ -3,12 +3,15 @@ package importarVideos;
 import javax.xml.bind.annotation.XmlElement;
 
 public class Image {
-	@XmlElement(name="#text")
+	
 	private String text;
 	private String size;
+	
+	@XmlElement(name="#text")
 	public String getText() {
 		return text;
 	}
+	
 	public void setText(String text) {
 		this.text = text;
 	}

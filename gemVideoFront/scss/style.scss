@@ -78,8 +78,7 @@ sans-serif;
 }
 
 .usuario {
-    border-bottom: 1px solid #fff;
-    // border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff; // border-top: 1px solid #fff;
     //   box-shadow: 2px 0px 10px 1px #fff inset, 0px 0px 5px 1px green inset, 0px 0px 5px 1px black inset;
     font-family: $font1;
     display: flex;
@@ -130,8 +129,7 @@ sans-serif;
         width: 90%;
         height: 250px;
         margin-left: 5%;
-        box-shadow: 0 10px 6px -6px $color-primary-1;
-        //  box-shadow: 1px 2px 7px $color-primary-2;
+        box-shadow: 0 10px 6px -6px $color-primary-1; //  box-shadow: 1px 2px 7px $color-primary-2;
     }
     .titulo {
         position: absolute;
@@ -140,8 +138,7 @@ sans-serif;
         width: 90%;
         line-height: 30px;
         margin-left: 5%; //margin:  0 auto;
-        z-index: 1;
-        //padding: 0 5px;
+        z-index: 1; //padding: 0 5px;
         //padding: 10px 0; //margin-left: 20px;
         background-color: rgba($color-primary-3, 0.5);
         h3 {
@@ -153,8 +150,7 @@ sans-serif;
             display: block;
             text-align: right;
             &:hover {
-                color: rgba($color-primary-1, 0.8);
-                //text-shadow: 1px 1px 20px #fff;
+                color: rgba($color-primary-1, 0.8); //text-shadow: 1px 1px 20px #fff;
             }
         }
     }
@@ -600,5 +596,66 @@ html,
         display: flex;
         flex-wrap: wrap;
         width: 100%;
+    }
+}
+
+//style de playVideo.html
+.main {
+    display: flex;
+    justify-content: space-around;
+    width: 900px;
+    margin: 0 auto;
+    margin-top: 50px;
+    &-video {
+        // background-color: rgba(#fff, 0.8);
+        background-color: rgba(#000, 0.7);
+        width: 73%;
+        .video {
+            width: 100%;
+        }
+        .detalleVideo {
+            width: 100%;
+            color: #fff;
+            //  border: 1px solid white;
+            &-up {
+                margin: 0 20px;
+                display: flex;
+                justify-content: space-between;
+                h2 {
+                    font-family: $font1;
+                    border-bottom: 2px solid orange;
+                }
+                .agregarVideo {
+                    font-family: $font1;
+                    font-size: $font-size-small;
+                    background-color: orange;
+                    line-height: 30px;
+                    border-radius: 10px;
+                    padding: 0 10px;
+                    color: $color-primary-4;
+                    &:hover {
+                        background-color: white;
+                    }
+                }
+            }
+            p {
+                font-family: $font2;
+                margin: 20px 20px;
+            }
+        }
+    }
+    &-playList {
+        font-family: $font2;
+        width: 22%;
+        //border: 1px solid white;
+        color: white;
+        .playLists {
+            background-color: orange;
+            line-height: 30px;
+            li {
+                text-decoration-style: none;
+                list-style: none;
+            }
+        }
     }
 }

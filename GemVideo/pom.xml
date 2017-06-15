@@ -27,6 +27,12 @@
 		</plugins>
 	</build>
 	<dependencies>
+<!-- 		Para habilitar el acceso al API de youtube. -->
+		<dependency>
+		    <groupId>org.glassfish.jersey.core</groupId>
+		    <artifactId>jersey-server</artifactId>
+		    <version>2.25.1</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>

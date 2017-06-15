@@ -28,7 +28,7 @@ public class ProcesarFicheros {
 		channelId = "UC2pmfLm7iq6Ov1UwYrWYkZA"; //VEVO
 		
 		this.url="https://www.googleapis.com/youtube/v3/activities?part=snippet&maxResults=" + this.numVideos + "&channelId=" + this.channelId + "&key=AIzaSyBnbMfQgqjMviCj-DaqXbLiKGoewb-5kZA";
-		
+	//https://developers.google.com/apis-explorer/#s/youtube/v3/youtube.search.list?part=snippet&maxResults=50&order=rating&publishedAfter=2017-06-01T00%253A00%253A00Z&publishedBefore=2017-05-01T00%253A00%253A00Z&q=VEVO+(OFFICIAL%252BVIDEO)&fields=items(id%252FvideoId%252Csnippet(description%252Ctitle))&_h=1&	
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -58,6 +58,8 @@ public class ProcesarFicheros {
 							get(Resultados.class);//al builder le decimos que construya un get request y le indicamos en que tipo de objeto queremos que nos empaquete la respuesta
 		
 		System.out.println( "finalizado 1" );
+		
+		System.out.println("eeee " +  response.toString());
 		
 		HttpURLConnection conn0 = null;
 		try {

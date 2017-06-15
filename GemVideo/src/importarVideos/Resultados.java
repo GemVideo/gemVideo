@@ -6,18 +6,24 @@ import java.util.List;
 
 public class Resultados {
 
-	 private String kind;
-	 private String etag;
-	 private String nextPageToken;
-	 private String pageInfo;
-	 private String totalResults;
-	 private String resultsPerPage;
+//	 private String kind;
+//	 private String etag;
+//	 private String nextPageToken;
+//	 private String pageInfo;
+//	 private String totalResults;
+//	 private String resultsPerPage;
 	
 	private List<Videos> items;
 	
-	private String channelTitle;
-	private String type;
+//	private String channelTitle;
+//	private String type;
 	
+	public List<Videos> getItems() {
+		return items;
+	}
+	public void setItems(List<Videos> items) {
+		this.items = items;
+	}
 	public Resultados() {
 		items = new ArrayList<>();
 	}

@@ -19,7 +19,7 @@ import modelo.negocio.ArtistaGestion;
 import modelo.negocio.VideoGestion;
 
 @Controller
-@SessionAttributes(names={"usuario"})
+@SessionAttributes(names={"usuario","videosHome"})
 public class VideoController {
 
 	@Autowired
@@ -31,7 +31,7 @@ public class VideoController {
 	public String obtenerVideos(Model model){
 		
 		List<Video> videosHome = videoGestion.obtenerPeliculasHome();
-		model.addAttribute("videosHome", videosHome);
+		model.addAttribute("videosHome", videosHome); 
 		
 		return "home";
 	}

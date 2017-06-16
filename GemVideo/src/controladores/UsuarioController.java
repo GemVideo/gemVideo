@@ -46,6 +46,11 @@ public class UsuarioController {
 		return "login";
 	}
 	
+	@RequestMapping("/obtenerPerdil.do")
+	public String obtenerPerfil(){
+		return "perfil";
+	}
+	
 	@RequestMapping("/logout.do")
 	public String logout(SessionStatus status, Model model){
 		status.setComplete();  //limpia sesión

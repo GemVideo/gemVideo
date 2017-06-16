@@ -15,7 +15,7 @@ public class PlayList {
 	private Integer id;
 	private String nombre;
 	
-	@OneToMany 
+	@OneToMany(fetch=FetchType.EAGER)
 	private List<Video> listaVideos;
 	
 	private String  thumbnail;

@@ -17,9 +17,9 @@ public class Usuario {
 	private String pass;
 	
 	
-	@OneToMany 
+	@OneToMany(fetch=FetchType.EAGER)
 	private List<Artista> artistasFavoritos;
-	@OneToMany 
+	@OneToMany(fetch=FetchType.EAGER)
 	private List<PlayList> PlayLists;
 	
 	

@@ -56,6 +56,8 @@ public class VideoController {
 		return "playVideo";
 	}
 	
+	
+
 	@RequestMapping("/buscar.do")
 	public String buscar(@RequestParam("busqueda")String busqueda, Model model){		
 		
@@ -68,5 +70,19 @@ public class VideoController {
 		return "resultBusqueda";
 	}
 	
-	
+	public VideoGestion getVideoGestion() {
+		return videoGestion;
+	}
+
+	public void setVideoGestion(VideoGestion videoGestion) {
+		this.videoGestion = videoGestion;
+	}
+
+	public ArtistaGestion getArtistaGestion() {
+		return artistaGestion;
+	}
+
+	public void setArtistaGestion(ArtistaGestion artistaGestion) {
+		this.artistaGestion = artistaGestion;
+	}
 }

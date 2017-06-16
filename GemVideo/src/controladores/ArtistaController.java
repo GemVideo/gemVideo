@@ -22,5 +22,14 @@ public class ArtistaController {
 		
 		return "mostrarArtista";
 	}
+
+	public ArtistaGestion getArtistaGestion() {
+		return artistaGestion;
+	}
+
+	public void setArtistaGestion(ArtistaGestion artistaGestion) {
+		this.artistaGestion = artistaGestion;
+	}
+
 	
 }

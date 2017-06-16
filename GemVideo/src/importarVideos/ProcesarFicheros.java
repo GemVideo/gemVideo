@@ -34,7 +34,7 @@ public class ProcesarFicheros {
 	public ProcesarFicheros(){
 		this.numVideos=2;
 		this.numFechas=1;
-		//this.channelId = "UC2pmfLm7iq6Ov1UwYrWYkZA"; //VEVO
+		
 		this.keyApiYouTube ="AIzaSyCjcuqTbqoDs7PMRz9AB3v--LJNWkIzGdM";
 		this.keyApiLastFm ="1e7628d355341dccc256c1c7b60cd480";
 		
@@ -79,9 +79,12 @@ public class ProcesarFicheros {
 		
 		
 		System.out.println( "finalizado 1" );
+		System.out.println( "url: " + this.url );
 		
 		System.out.println("eeee " +  response.getArtist().getName());
 		System.out.println("eeee " +  response.getArtist().getImage().size());
+		System.out.println("imagen3: " +  response.getArtist().getImage().get(3).getText());
+		System.out.println("size3: " +  response.getArtist().getImage().get(3).getSize());
 		System.out.println("");
 		System.out.println("fin proceso de llamada");
 		
@@ -90,6 +93,8 @@ public class ProcesarFicheros {
 	
 	public void procesarVideos(){
 		ArrayList<Resultados> resultados= new ArrayList();
+		Resultados cancionesFinales= new Resultados ();
+		ArrayList<Videos> videosFinales= new ArrayList();
 		Resultados resultado;
 		
 		Fechas fechas=new Fechas(numFechas);
@@ -100,7 +105,7 @@ public class ProcesarFicheros {
 			
 			this.after=fechas.getFechaItems().get(cont).getDesde();
 			this.before=fechas.getFechaItems().get(cont).getHasta();
-			this.url="https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=" + numVideos + "&order=rating&publishedAfter=" + after + "T00%3A00%3A00Z&publishedBefore=" + before + "T00%3A00%3A00Z&q=VEVO+(OFFICIAL%2BVIDEO)&fields=items(id%2FvideoId%2Csnippet(description%2Ctitle))&key=" + this.keyApiYouTube;
+			this.url="https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=" + numVideos + "&order=rating&publishedAfter=" + after + "T00%3A00%3A00Z&publishedBefore=" + before + "T00%3A00%3A00Z&q=VEVO+(OFFICIAL%2BVIDEO)&fields=items(id%2FvideoId%2Csnippet(description%2Cthumbnails%2Ctitle))&key=" + this.keyApiYouTube;
 			
 			System.out.println("url: " + url);
 			
@@ -113,9 +118,28 @@ public class ProcesarFicheros {
 		
 		for (int cont=0;cont<numFechas;cont++){
 			for (int contVideo=0;contVideo<resultados.get(cont).getItems().size();contVideo++){
+				int maxFoto= resultados.get(cont).getItems().get(contVideo).getSnippet().getThumbnails().size()-1;
+				
 				System.out.println("Video id: " + resultados.get(cont).getItems().get(contVideo).getId().getVideoId());
 				System.out.println("titulo id: " + resultados.get(cont).getItems().get(contVideo).getSnippet().getTitle());
 				System.out.println("Descripcion: " + resultados.get(cont).getItems().get(contVideo).getSnippet().getDescription());
+				System.out.println("url0: " + resultados.get(cont).getItems().get(contVideo).getSnippet().getThumbnails().get(maxFoto).getDefault1().getUrl());
+				System.out.println("width0: " + resultados.get(cont).getItems().get(contVideo).getSnippet().getThumbnails().get(maxFoto).getDefault1().getWidth());
+				System.out.println("height0: " + resultados.get(cont).getItems().get(contVideo).getSnippet().getThumbnails().get(maxFoto).getDefault1().getHeight());
+				
+				String titulo =  resultados.get(cont).getItems().get(contVideo).getSnippet().getTitle();
+				System.out.println("Titulo: " + titulo);
+				System.out.println(titulo.indexOf( "-" ));
+				 
+				 if (titulo.indexOf( "-" )>0) {
+					String[] autores= resultados.get(cont).getItems().get(contVideo).getSnippet().getTitle().split("-");
+					if (autores.length>0){
+						System.out.println("artista: " + autores[0]);
+						
+	//					cancionesFinales.add(resultados.get(cont));
+	//					System.out.println("titulo id: " + cancionesFinales.get(cancionesFinales.size()-1).getItems().get(contVideo).getSnippet().getTitle());
+					}
+				 }
 			}
 		}
 

@@ -16,7 +16,7 @@ public class Artista {
 	private Integer id;
 	private String nombre;
 	private String  imagen;	
-	@OneToMany 
+	@OneToMany(fetch=FetchType.EAGER)
 	private List<Video> listaVideos;
 	
 	

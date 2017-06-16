@@ -13,7 +13,7 @@
 		<div class="videos">
 			<h2>Videos mas recomendados</h2>
 			<div class="videos-lista">
-			<%  List<Video> videosHome=request.getAttribute("videosHome");
+			<%  List<Video> videosHome=(List<Video>)session.getAttribute("videosHome");
 				if(videosHome==null){
 					out.print("<h1>no se encontro resultado de la buqueda</h1><br><h2>intenta de nuevo</h2>");
 				}else{	%>
@@ -25,7 +25,7 @@
 					</div>
 				</div>
 				  <%}
-			  } %>	
+			  } %>
 								
 			</div>
 		</div>

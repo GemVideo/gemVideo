@@ -24,6 +24,14 @@ public class UsuarioController {
 	@Autowired
 	UsuarioGestion usuarioGestion;
 	
+	public UsuarioGestion getUsuarioGestion() {
+		return usuarioGestion;
+	}
+
+	public void setUsuarioGestion(UsuarioGestion usuarioGestion) {
+		this.usuarioGestion = usuarioGestion;
+	}
+
 	@RequestMapping("/login.do")
 	public String precargaLogin(Model model){
 		model.addAttribute("loginCommand", new Usuario());
@@ -44,6 +52,11 @@ public class UsuarioController {
 			}
 		}
 		return "login";
+	}
+	
+	@RequestMapping("/obtenerPerdil.do")
+	public String obtenerPerfil(){
+		return "perfil";
 	}
 	
 	@RequestMapping("/logout.do")

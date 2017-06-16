@@ -24,7 +24,7 @@ public class ActualizarUsuarioEnSession implements HandlerInterceptor{
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handle, ModelAndView mav)
 			throws Exception {
 		if(mav.getViewName().equals("home") || mav.getViewName().equals("playVideo")
-				|| mav.getViewName().equals("mostrarArtista")){
+				|| mav.getViewName().equals("mostrarArtista") || mav.getViewName().equals("perfil")){
 			Usuario viejo= (Usuario)request.getSession().getAttribute("usuario");
 			Usuario user = usuarioGestion.obtenerPerfil(viejo.getNombre());
 			request.getSession().setAttribute("usuario", user);

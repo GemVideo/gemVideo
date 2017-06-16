@@ -4,21 +4,27 @@ import javax.xml.bind.annotation.XmlElement;
 
 public class Image {
 	
-	private String text;
+	
+	private String texto;
+	
 	private String size;
 	
 	@XmlElement(name="#text")
 	public String getText() {
-		return text;
+		return texto;
 	}
 	
 	public void setText(String text) {
-		this.text = text;
+		this.texto = text;
 	}
+	
+	@XmlElement(name="#text")
 	public String getSize() {
 		return size;
 	}
 	public void setSize(String size) {
 		this.size = size;
 	}
+	
+	
 }

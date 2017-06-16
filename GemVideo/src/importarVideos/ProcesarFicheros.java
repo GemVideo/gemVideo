@@ -22,26 +22,22 @@ import org.glassfish.jersey.client.ClientConfig;
 public class ProcesarFicheros { 
 	private Integer  numVideos;
 	private Integer  numFechas; 
-	private String channelId ;
+	//private String channelId ;
 	private String url ;
 	private String after;
 	private String before;
-	private String key ;
+	
+	
+	private String keyApiYouTube ;
+	private String keyApiLastFm ;
 	
 	public ProcesarFicheros(){
-		numVideos=50;
-		numFechas=1;
-		channelId = "UC2pmfLm7iq6Ov1UwYrWYkZA"; //VEVO
+		this.numVideos=2;
+		this.numFechas=1;
+		//this.channelId = "UC2pmfLm7iq6Ov1UwYrWYkZA"; //VEVO
+		this.keyApiYouTube ="AIzaSyCjcuqTbqoDs7PMRz9AB3v--LJNWkIzGdM";
+		this.keyApiLastFm ="1e7628d355341dccc256c1c7b60cd480";
 		
-		key="AIzaSyBnbMfQgqjMviCj-DaqXbLiKGoewb-5kZA";
-		
-		this.url="https://www.googleapis.com/youtube/v3/activities?part=snippet&maxResults=" + this.numVideos + "&channelId=" + this.channelId + "&key=AIzaSyBnbMfQgqjMviCj-DaqXbLiKGoewb-5kZA";
-	//https://developers.google.com/apis-explorer/#s/youtube/v3/youtube.search.list?part=snippet&maxResults=50&order=rating&publishedAfter=2017-06-01T00%253A00%253A00Z&publishedBefore=2017-05-01T00%253A00%253A00Z&q=VEVO+(OFFICIAL%252BVIDEO)&fields=items(id%252FvideoId%252Csnippet(description%252Ctitle))&_h=1&	
-	
-	
-	this.url="https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&order=rating&publishedAfter=2017-06-01T00%3A00%3A00Z&publishedBefore=2017-05-01T00%3A00%3A00Z&q=VEVO+(OFFICIAL%2BVIDEO)&fields=items(id%2FvideoId%2Csnippet(description%2Ctitle))&key=AIzaSyBnbMfQgqjMviCj-DaqXbLiKGoewb-5kZA";
-	
-	this.url="https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&order=rating&publishedAfter=" + after + "&publishedBefore=" + before + "&q=VEVO+(OFFICIAL%2BVIDEO)&fields=items(id%2FvideoId%2Csnippet(description%2Ctitle))&key=AIzaSyBnbMfQgqjMviCj-DaqXbLiKGoewb-5kZA";
 	
 	}
 	public static void main(String[] args) {
@@ -49,20 +45,21 @@ public class ProcesarFicheros {
 		
 		ProcesarFicheros procesarFicheros= new ProcesarFicheros();
 		
-		//procesarFicheros.procesarVideos();
+		procesarFicheros.procesarVideos();
 		
-		procesarFicheros.procesarArtistas();
+		//procesarFicheros.procesarArtistas("Elvis Presley");
 		
 
 	}
 	
 	
-	public void procesarArtistas(){
-		this.url ="http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=Elvis presley&lang=ES&api_key=65c8100999cc605e3d725d60c2dd6a04&format=json";
-		this.url="http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=Elvis%20presley&lang=ES&api_key=65c8100999cc605e3d725d60c2dd6a04&format=json";
+	public void procesarArtistas(String nombreArtista){
+		
+		//Si el nombretrase blancos, se reemplazan.
+		nombreArtista=nombreArtista.replace(" ","%20");
 		
 		
-		
+		this.url="http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + nombreArtista + "&lang=ES&api_key=" + this.keyApiLastFm + "&format=json";
 		
 		
 		ClientConfig config = new ClientConfig();
@@ -84,36 +81,13 @@ public class ProcesarFicheros {
 		System.out.println( "finalizado 1" );
 		
 		System.out.println("eeee " +  response.getArtist().getName());
-		System.out.println("eeee " +  response.getArtist().getImages().size());
+		System.out.println("eeee " +  response.getArtist().getImage().size());
 		System.out.println("");
 		System.out.println("fin proceso de llamada");
 		
-//		HttpURLConnection conn0 = null;
-//		try {
-//			conn0 = (HttpURLConnection) new URL(this.url ).openConnection();
-//		} catch (MalformedURLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		conn0.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2.3) Gecko/20100401");
-//		
-//		String regs = null;
-//		try {
-//			regs = new String( IOUtils.toByteArray( conn0.getInputStream() ) );
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		System.out.println("resultado : " + regs);
-//		
 	}
 	
 	
-	////////////////////////////////////
 	public void procesarVideos(){
 		ArrayList<Resultados> resultados= new ArrayList();
 		Resultados resultado;
@@ -126,8 +100,7 @@ public class ProcesarFicheros {
 			
 			this.after=fechas.getFechaItems().get(cont).getDesde();
 			this.before=fechas.getFechaItems().get(cont).getHasta();
-			url="https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&order=rating&publishedAfter=" + after + "&publishedBefore=" + before + "&q=VEVO+(OFFICIAL%2BVIDEO)&fields=items(id%2FvideoId%2Csnippet(description%2Ctitle))&key=" + key;
-			this.url="https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=" + numVideos + "&order=rating&publishedAfter=" + after + "T00%3A00%3A00Z&publishedBefore=" + before + "T00%3A00%3A00Z&q=VEVO+(OFFICIAL%2BVIDEO)&fields=items(id%2FvideoId%2Csnippet(description%2Ctitle))&key=AIzaSyBnbMfQgqjMviCj-DaqXbLiKGoewb-5kZA";
+			this.url="https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=" + numVideos + "&order=rating&publishedAfter=" + after + "T00%3A00%3A00Z&publishedBefore=" + before + "T00%3A00%3A00Z&q=VEVO+(OFFICIAL%2BVIDEO)&fields=items(id%2FvideoId%2Csnippet(description%2Ctitle))&key=" + this.keyApiYouTube;
 			
 			System.out.println("url: " + url);
 			

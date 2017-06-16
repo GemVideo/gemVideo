@@ -2,7 +2,11 @@ package importarVideos;
 
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class ResultadosArtista {
+	
 	private Artist artist;
 
 	public Artist getArtist() {
@@ -13,5 +17,10 @@ public class ResultadosArtista {
 		this.artist = artist;
 	}
 
+	public ResultadosArtista() {
+		super();
+	}
+
+	
 	
 }

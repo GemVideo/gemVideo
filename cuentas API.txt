@@ -1,0 +1,27 @@
+Configuración cuenta gemvideo.
+
+	gemvideo2017@gmail.com
+
+	password: gemvideo_2017
+
+Configuracion cuenta desarrollo gmail:
+
+	https://console.developers.google.com/?pli=1
+
+	API Key:  AIzaSyCjcuqTbqoDs7PMRz9AB3v--LJNWkIzGdM
+
+Llamadas para artistas:
+	http://www.last.fm/api/show/artist.getInfo
+
+	API LastFM:
+	usuario: gemvideo2017
+
+	password: gemvideo_2017
+
+	Here are the details of your new API account.
+	Application name	gemvideo2017
+	API key	1e7628d355341dccc256c1c7b60cd480
+	Shared secret	983a7849c80b056de53a3aa902021232
+	Registered to	gemvideo2017
+
+	

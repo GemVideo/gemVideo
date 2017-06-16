@@ -6,11 +6,7 @@
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='icon' type='image/png' sizes='16x16' href='image/icon/favicon.ico'>
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js '></script>
-    <!-- PATH DE BOOTSTRAP.MIN.JS -->
-    <script async src='bootstrap-3.3.7/js/bootstrap.min.js'></script>
-    <!-- PATH DE BOOTSTRAP.MIN.CSS -->
-    <link rel='stylesheet' href='bootstrap-3.3.7/css/bootstrap.min.css'>
+
     <link href='css/style.css' rel='stylesheet'>
 </head>
 
@@ -41,21 +37,41 @@
         <div class="main">
             <div class="main-video">
                 <video class="video" autoplay loop controls>
-                       <source src="videos/concert.mp4" type="video/mp4">
+                    <source src="videos/concert.mp4" type="video/mp4">
                 </video>
                 <div class="detalleVideo">
                     <div class="detalleVideo-up">
                         <h2>titulo de la cancio</h2>
-                        <div class="agregarVideo">añade video</div>
+                        <div id="agregarVideo" class="agregarVideo">
+                            añade video
+                        </div>
+                        <div id="vista" class="contentAnadir isHide">
+                            <div class="playLists">
+                                <form action "playVideo.html" onsubmit="anadirEvento()" method="GET">
+                                    <div class="fieldPlus">
+                                        <i class="fa fa-plus fa-1x" aria-hidden="true"></i> <input type="text" placeholder="escribe nueva">
+                                    </div>
+                                </form>
+                                <span>añadir a:</span>
+                                <ul id="playLists">
+                                    <li><a href="playVideo.html">playlist3</a></li>
+                                    <li><a href="playVideo.html">playlist3</a></li>
+                                    <li><a href="reproducirList.html">playlist3</a></li>
+                                    <li><a href="reproducirList.html">playlist3</a></li>
+                                    <li><a href="reproducirList.html">playlist3</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem possimus debitis quos quidem dicta, pariatur accusamus soluta voluptatibus quis accusantium.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem possimus debitis quos quidem dicta, pariatur
+                        accusamus soluta voluptatibus quis accusantium.</p>
 
                 </div>
             </div>
             <div class="main-playList">
                 <h3>Mis PlayList</h3>
                 <div class="playLists">
-                    <ul>
+                    <ul id="playLists">
                         <li><a href="reproducirList.html">playlist3</a></li>
                         <li><a href="reproducirList.html">playlist3</a></li>
                         <li><a href="reproducirList.html">playlist3</a></li>
@@ -76,16 +92,9 @@
 
     <!-- FUENTE DE ICONOS DE FONTAWESOME -->
     <script async type='text/javascript' src='https://use.fontawesome.com/493ef35f7a.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js '></script>
     <!-- HOJA DE JAVASCRIPT -->
-    <script async type='text/javascript' src='jscript/js.js'></script>
-    <!-- PATH DE PREFIXEFREE.MIN.JS -->
-    <script async type='text/javascript' src='jscript/prefixfree.min.js'></script>
-    <!-- PATH DE MODERNIZE-CUSTOM.JS  -->
-    <script async type='text/javascript' src='jscript/modernizr-custom.js'></script>
-    <!-- PATH DE NORMALIZE -->
-    <link rel='stylesheet' href='css/normalize.css'>
-    <!-- HOLA DE ESTILO MINIFICADO -->
-    <link href='css/style.min.css' rel='stylesheet'>
+    <script async type='text/javascript' src='js/js.js'></script>
     <!-- CAMBIA EL ESTILO DE FUENTE EN GGOGLE FONT -->
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans|Oswald|Rock+Salt' rel='stylesheet'>
 </body>

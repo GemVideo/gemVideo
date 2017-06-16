@@ -25,7 +25,8 @@
   justify-content: flex-end;
   width: 100%;
   margin-top: 70px;
-  line-height: 40px; }
+  line-height: 30px;
+  font-size: 0.9em; }
   .usuario span {
     font-size: 0.9em;
     float: right;
@@ -505,10 +506,12 @@ html,
   -webkit-justify-content: space-around;
   -ms-flex-pack: distribute;
   justify-content: space-around;
-  width: 900px;
+  width: 800px;
   margin: 0 auto;
   margin-top: 50px; }
   .main-video {
+    -webkit-box-shadow: 0px 10px 60px -2px rgba(255, 255, 255, 0.5);
+    box-shadow: 0px 10px 60px -2px rgba(255, 255, 255, 0.5);
     background-color: rgba(0, 0, 0, 0.7);
     width: 73%; }
     .main-video .video {
@@ -530,6 +533,7 @@ html,
           font-family: "Rock Salt", cursive;
           border-bottom: 2px solid orange; }
         .main-video .detalleVideo-up .agregarVideo {
+          position: relative;
           font-family: "Rock Salt", cursive;
           font-size: 0.9em;
           background-color: orange;
@@ -547,9 +551,98 @@ html,
     width: 22%;
     color: white; }
     .main-playList .playLists {
-      background-color: orange;
-      line-height: 30px; }
+      background-color: rgba(255, 255, 255, 0.9);
+      -webkit-box-shadow: 0px 2px 10px grey;
+      box-shadow: 0px 2px 10px grey;
+      line-height: 30px;
+      border-radius: 5px;
+      font-size: 0.81em; }
       .main-playList .playLists li {
+        width: 100%;
+        font-family: "Rock Salt", cursive;
         -webkit-text-decoration-style: none;
         text-decoration-style: none;
         list-style: none; }
+        .main-playList .playLists li a {
+          color: #3F002E; }
+          .main-playList .playLists li a:hover {
+            color: orange; }
+          .main-playList .playLists li a::before {
+            content: "|";
+            font-family: "Noto Sans", sans-serif;
+            color: orangered; }
+
+.contentAnadir {
+  position: absolute;
+  float: right;
+  font-family: "Noto Sans", sans-serif; }
+  .contentAnadir .playLists {
+    -webkit-animation: verList 3s;
+    animation: verList 3s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    border-radius: 5px;
+    width: 175px;
+    position: absolute;
+    background-color: rgba(255, 165, 0, 0.8);
+    top: -80px;
+    right: -760px;
+    line-height: 20px; }
+    .contentAnadir .playLists .fieldPlus {
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      width: 100%;
+      background-color: #fff; }
+      .contentAnadir .playLists .fieldPlus i {
+        color: #3F002E;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        width: 15%;
+        line-height: 20px; }
+      .contentAnadir .playLists .fieldPlus input {
+        border: none;
+        width: 80%;
+        margin: 0;
+        padding: 0; }
+    .contentAnadir .playLists ul {
+      padding: 0;
+      display: block;
+      overflow: hidden;
+      width: 100%; }
+      .contentAnadir .playLists ul li {
+        list-style: none;
+        display: block;
+        width: 100%; }
+        .contentAnadir .playLists ul li a {
+          display: block;
+          width: 100%;
+          margin-left: 10px;
+          color: #3F002E; }
+        .contentAnadir .playLists ul li:hover {
+          background-color: orange;
+          cursor: pointer !important; }
+    .contentAnadir .playLists form {
+      display: block; }
+    .contentAnadir .playLists span {
+      margin-left: 10px;
+      font-family: "Rock Salt", cursive;
+      display: block;
+      margin-top: 10px;
+      margin-bottom: -10px; }
+
+@-webkit-keyframes verList {
+  from {
+    right: -740px;
+    opacity: 0; }
+  to {
+    right: -760px;
+    opacity: 1; } }
+
+@keyframes verList {
+  from {
+    right: -740px;
+    opacity: 0; }
+  to {
+    right: -760px;
+    opacity: 1; } }

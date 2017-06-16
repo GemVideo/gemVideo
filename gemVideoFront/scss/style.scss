@@ -85,7 +85,8 @@ sans-serif;
     justify-content: flex-end;
     width: 100%;
     margin-top: 70px;
-    line-height: 40px;
+    line-height: 30px;
+    font-size: $font-size-small;
     span {
         font-size: $font-size-small;
         float: right;
@@ -603,10 +604,11 @@ html,
 .main {
     display: flex;
     justify-content: space-around;
-    width: 900px;
+    width: 800px;
     margin: 0 auto;
     margin-top: 50px;
     &-video {
+box-shadow: 0px 10px 60px -2px rgba(#fff,0.5);
         // background-color: rgba(#fff, 0.8);
         background-color: rgba(#000, 0.7);
         width: 73%;
@@ -615,8 +617,7 @@ html,
         }
         .detalleVideo {
             width: 100%;
-            color: #fff;
-            //  border: 1px solid white;
+            color: #fff; //  border: 1px solid white;
             &-up {
                 margin: 0 20px;
                 display: flex;
@@ -626,6 +627,7 @@ html,
                     border-bottom: 2px solid orange;
                 }
                 .agregarVideo {
+                    position: relative;
                     font-family: $font1;
                     font-size: $font-size-small;
                     background-color: orange;
@@ -646,16 +648,111 @@ html,
     }
     &-playList {
         font-family: $font2;
-        width: 22%;
-        //border: 1px solid white;
+        width: 22%; //border: 1px solid white;
         color: white;
         .playLists {
-            background-color: orange;
+            background-color: rgba(#fff, 0.9);
+            box-shadow: 0px 2px 10px grey;
             line-height: 30px;
+            border-radius: 5px;
+            font-size: $font-size-small*.9;
             li {
+                width: 100%;
+                font-family: $font1;
                 text-decoration-style: none;
-                list-style: none;
+                list-style: none; //  border-bottom: 2px solid #fff;
+                a {
+                    color: $color-primary-4;
+                    &:hover {
+                        color: orange;
+                    }
+                    &::before {
+                        content: "|";
+                        font-family: $font3;
+                        color: orangered;
+                    } //  border-bottom: 2px solid #fff;
+                }
             }
         }
+    }
+}
+
+.contentAnadir {
+    position: absolute; //width: 400px;
+    float: right;
+    font-family: $font3;
+    .playLists {
+       animation: verList 3s;
+       animation-fill-mode: forwards;
+        border-radius: 5px;
+        width: 175px;
+        position: absolute;
+        background-color: rgba(orange, 0.8);
+        top: -80px;
+        right: -760px;
+        line-height: 20px;
+        .fieldPlus {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            width: 100%;
+            background-color: #fff;
+            i {
+                color: $color-primary-4;
+                padding: 0;
+                margin: 0;
+                text-align: center;
+                width: 15%;
+                line-height: 20px;
+            }
+            input {
+                border: none;
+                width: 80%;
+                margin: 0;
+                padding: 0;
+            }
+        }
+        ul {
+            padding: 0;
+            display: block;
+            overflow: hidden;
+            width: 100%;
+            li {
+                list-style: none;
+                display: block;
+                width: 100%; // border:1px solid red;
+                a {
+                    display: block;
+                    width: 100%;
+                    margin-left: 10px;
+                    color: $color-primary-4;
+                }
+                &:hover {
+                    background-color: orange;
+                    cursor: pointer !important;
+                }
+            }
+        }
+        form {
+            display: block;
+        }
+        span {
+            margin-left: 10px;
+            //color: $color-primary-4;
+            font-family: $font1;
+            display: block;
+            margin-top: 10px;
+            margin-bottom: -10px;
+        }
+    }
+}
+
+@keyframes verList {
+    from {
+        right: -740px;
+        opacity: 0;
+    }
+    to {
+        right: -760px;
+        opacity: 1;
     }
 }

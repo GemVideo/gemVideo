@@ -16,17 +16,17 @@
 
 		<div class="content-header">
 			<h2>Login</h2>
-			<form:form modalAttribute="usuario">
+			<form:form modelAttribute="loginCommand">
 				<div class="field">
 					<i class="fa fa-hand-o-right fa-2x" aria-hidden="true"></i>
 					<form:errors path="nombre" />
-					<form:input path="nombre" placeholder="contraseña" require />
+					<form:input path="nombre" placeholder="contraseña"  required="true"/>
 					<br>
 				</div>
 				<div class="field">
 					<i class="fa fa-key fa-2x" aria-hidden="true"></i>
-					<form:errors path="password" />
-					<form:password path="password" placeholder="contraseña" require />
+					<form:errors path="pass" />
+					<form:password path="pass" placeholder="contraseña" required="true" />
 					<br>
 				</div>
 

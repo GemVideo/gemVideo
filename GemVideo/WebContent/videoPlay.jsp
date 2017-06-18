@@ -19,7 +19,7 @@
 				Video video = (Video) request.getAttribute("video");
 			%>
 			<div class="main-video">
-				<iframe class="video"
+				<iframe class="iframe"
 					src="https://www.youtube.com/embed/<%=video.getUrl()%>">
 				</iframe>
 				
@@ -28,16 +28,16 @@
 						<h2><%=video.getTitulo()%></h2>
 						<div id="agregarVideo" class="agregarVideo">añade video</div>
 						<div id="vista" class="contentAnadir isHide">
-							<div class="playLists">
+							<div class="playLists2">
 								<form  action="crearPlaylist.do" onsubmit="anadirEvento()"
 									method="GET">
 									<div class="fieldPlus">
 										<i class="fa fa-plus fa-1x" aria-hidden="true"></i> <input
-											type="text" placeholder="escribe nueva">
+											type="text" placeholder="nueva lista">
 									</div>
 								</form>
 								<span>añadir a:</span>
-								<ul id="playLists">
+								<ul class="playList2-list2" id="playLists">
 									<%
 										for (PlayList pList : usuario.getPlayLists()) {
 									%>
@@ -57,11 +57,11 @@
 			<div class="main-playList">
 				<h3>Mis PlayList</h3>
 				<div class="playLists">
-					<ul id="playLists">
+					<ul id="playLists" id="playLists">
 						<%
 						for (PlayList pList : usuario.getPlayLists()) {
 						%>
-						<li><a href="playVideo.do"><%=pList.getNombre()%></a></li>
+						<li><i class="fa fa-th-list fa-1x" aria-hidden="true"></i><a href="playVideo.do"><%=pList.getNombre()%></a></li>
 
 						<%
 							}
@@ -70,8 +70,7 @@
 				</div>
 			</div>
 		</div>
-
-
+	<!-- playVideo-->
 	</div>
 	<%@ include file="templates/copy.jsp"%>
 	<%@ include file="templates/linkLib.jsp"%>

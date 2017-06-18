@@ -6,7 +6,8 @@
 		<span>
 		<%Usuario usuario=(Usuario)session.getAttribute("usuario");
 		out.print(usuario.getNombre());%>
-		</span><br> <a href="obtenerPerdil.do">perfil</a>| <a
-			class="logout" href="logout.do">Logout</a>
+		</span>
+		 <a href="obtenerPerdil.do">perfil</a>
+		 <a	class="logout" href="logout.do">Logout</a>
 	</div>
 </div>

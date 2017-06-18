@@ -834,13 +834,13 @@ html,
     display: -webkit-left;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
+    -webkit-box-pack: ;
+    -webkit-justify-content: left;
     -ms-flex-pack: left;
-    justify-content: space-around;
-    width: 900px;
+    justify-content:flex-start;
+    width: 800px;
     margin-top: 60px;
-    margin-left: -50px;
+    margin-left: 150px;
 }
 
 .main-video2 {
@@ -856,38 +856,88 @@ html,
 /*detalle de los mini videos*/
 
 .main-video2 .detalleVideo2 {
-    width: 60%;
+    width: 40%;
     color: #fff;
 }
 
-.main-video2 .detalleVideo-up2 {
-    margin: 0 30px;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-}
+
 
 .main-video2 .detalleVideo-up2 h2 {
     font-family: "Rock Salt", cursive;
     border-bottom: 2px solid orange;
 }
 
-.main-video2 .detalleVideo-up2 .agregarVideo {
+
+
+
+.main-video2 .detalleVideo-up2 {
+    font-family: "Oswald", sans-serif;
+    margin: 20px 20px;
+    
+}
+
+/*Detalle descripcion minivideos*/
+.caja{
+    
+   font-family: "Oswald", sans-serif;  
+       padding-left: 10px;
+    padding-top: 20px;
+  padding-right: 20px;
+  margin-left:   50px;
+  margin-right:  0px;
+ color:#fff;
+ 
+
+
+    
+}
+    
+    /* 4 mini videos plavideo6 */
+
+
+
+
+
+.main-video3 .video {
+    width: 40%;
+}
+
+.main-video3 .detalleVideo3 {
+    width: 30%;
+    color: #fff;
+}
+
+.main-video3 .detalleVideo-up3 {
+    margin: 0 20px;
+    display: -webkit-box;
+    display: -webkit-flex;
+
+}
+
+.main-video3 .detalleVideo-up3 h2 {
+    font-family: "Rock Salt", cursive;
+    border-bottom: 2px solid orange;
+}
+
+.main-video3 .detalleVideo-up3 .agregarVideo {
+    
     font-family: "Rock Salt", cursive;
     font-size: 0.9em;
     background-color: orange;
     line-height: 30px;
-    border-radius: 20px;
+    border-radius: 10px;
     padding: 0 10px;
     color: #3F002E;
 }
 
-.main-video2 .detalleVideo-up2 {
+.main-video3 .detalleVideo-up3 .agregarVideo:hover {
+    background-color: white;
+}
+
+.main-video3 .detalleVideo3 p {
     font-family: "Oswald", sans-serif;
-    margin: 23px 20px;
+    margin: 20px 20px;
+}
+
+ 
 }

@@ -15,7 +15,7 @@
         <div class="content-nav ">
             <div class="logo  "><a href="index.html">gemVideo</a></div>
             <div class="busqueda">
-                <form action="index.html" class="login">
+                <form action="resultBusqueda.html" class="login">
                     <div class="field">
                         <i class="fa fa-search fa-2x" aria-hidden="true"></i>
                         <input type="text" placeholder="contraseña" require><br>
@@ -28,17 +28,19 @@
         </div>
         <div class="usuario">
             <div class="usuario-content">
-                <span>Eduardo</span><br>
-                <a href="index.html">perfil</a>|
+                <span>Eduardo</span>
+                <a href="perfil.html">perfil</a>
                 <a class="logout" href="index.htmt">Logout</a>
             </div>
         </div>
         <!-- playVideo-->
         <div class="main">
             <div class="main-video">
-                <video class="video" autoplay loop controls>
+                <iframe class="iframe" src="https://www.youtube.com/embed/Vn6N184C2aQ">
+                </iframe>
+                <!-- <video class="video" autoplay loop controls>
                     <source src="videos/concert.mp4" type="video/mp4">
-                </video>
+                </video>-->
                 <div class="detalleVideo">
                     <div class="detalleVideo-up">
                         <h2>titulo de la cancio</h2>
@@ -46,14 +48,14 @@
                             añade video
                         </div>
                         <div id="vista" class="contentAnadir isHide">
-                            <div class="playLists">
+                            <div class="playLists2">
                                 <form action="playVideo.html" onsubmit="anadirEvento()" method="GET">
                                     <div class="fieldPlus">
                                         <i class="fa fa-plus fa-1x" aria-hidden="true"></i> <input type="text" placeholder="escribe nueva">
                                     </div>
                                 </form>
                                 <span>añadir a:</span>
-                                <ul id="playLists">
+                                <ul class="playLists2-list2" id="playLists">
                                     <li><a href="playVideo.html">playlist3</a></li>
                                     <li><a href="playVideo.html">playlist3</a></li>
                                     <li><a href="reproducirList.html">playlist3</a></li>
@@ -63,28 +65,26 @@
                             </div>
                         </div>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem possimus debitis quos quidem dicta, pariatur accusamus soluta voluptatibus quis accusantium.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem possimus debitis quos quidem dicta, pariatur
+                        accusamus soluta voluptatibus quis accusantium.</p>
 
                 </div>
-            </div>
-            <div class="main-playList">
-                <h3>Mis PlayList</h3>
-                <div class="playLists">
-                    <ul id="playLists">
-                        <li><a href="reproducirList.html">playlist3</a></li>
-                        <li><a href="reproducirList.html">playlist3</a></li>
-                        <li><a href="reproducirList.html">playlist3</a></li>
-                        <li><a href="reproducirList.html">playlist3</a></li>
-                        <li><a href="reproducirList.html">playlist3</a></li>
-                    </ul>
+                <div class="main-playList">
+                    <h3>Mis PlayList</h3>
+                    <div class="playLists">
+                        <ul class="playLists-list" id="playLists">
+                            <li><i class="fa fa-th-list fa-1x" aria-hidden="true"></i><a href="reproducirList.html">playlist3</a></li>
+                            <li><i class="fa fa-th-list fa-1x" aria-hidden="true"></i><a href="reproducirList.html">playlist3</a></li>
+                            <li><i class="fa fa-th-list fa-1x" aria-hidden="true"></i><a href="reproducirList.html">playlist3</a></li>
+                            <li><i class="fa fa-th-list fa-1x" aria-hidden="true"></i><a href="reproducirList.html">playlist3</a></li>
+                            <li><i class="fa fa-th-list fa-1x" aria-hidden="true"></i><a href="reproducirList.html">playlist3</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+
         </div>
-
-
     </div>
-
-
     <div class="copy ">
         <p>By gemVideo <i class="fa fa-copyright fa-1x" aria-hidden="true"></i> 2017</p>
     </div>

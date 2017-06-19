@@ -14,19 +14,20 @@ public class ArtistaGestion {
 
 	@Autowired
 	ArtistaRepository artistaRepo;
-	
+
 	public List<Artista> buscarArtistas(String busqueda) {
 		List<Artista> artistas = artistaRepo.findByNombre(busqueda);
 		List<Artista> listaCuatroArtistas = new ArrayList<>();
-		for(int i = 0; i < 4; i++){
-			listaCuatroArtistas.add(artistas.get(i));
+		if (artistas != null) {
+			for (int i = 0; i < 4; i++) {
+				listaCuatroArtistas.add(artistas.get(i));
+			}
 		}
-		
 		return listaCuatroArtistas;
 	}
 
 	public Artista mostrarArtista(Integer idArtista) {
-		
+
 		return artistaRepo.findOne(idArtista);
 	}
 

@@ -7,13 +7,11 @@
 <body class="body">
 	<div class="container">
 		<%@ include file="templates/nav.jsp"%>
-		<%@ inlcude file="templates/usuario.jsp"%>
+		<%@ include file="templates/usuario.jsp"%>
 
 		<!-- perfil-->
 		<div class="result">
-			<%
-				Usuario usuario = (Usuario) request.getAttribute("Usuario");
-			%>
+			
 			<div class="result-usuario">
 				<i class="fa fa-android fa-2x" aria-hidden="true"></i>
 				<div class="datos">

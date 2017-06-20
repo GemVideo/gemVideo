@@ -103,6 +103,8 @@
 }
 
 .item .titulo {
+	font-family:"oswald";
+	font-size:3em;
     position: absolute;
     bottom: 0;
     left: 0;

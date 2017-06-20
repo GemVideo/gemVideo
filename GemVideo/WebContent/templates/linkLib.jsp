@@ -4,7 +4,7 @@
 <script async type='text/javascript'
 	src='https://use.fontawesome.com/493ef35f7a.js'></script>
 <!-- HOJA DE JAVASCRIPT -->
-<script async type='text/javascript' src='jscript/js.js'></script>
+<script async type='text/javascript' src='js/js.js'></script>
 <!-- HOLA DE ESTILO MINIFICADO -->
 <link href='css/style.min.css' rel='stylesheet'>
 <!-- CAMBIA EL ESTILO DE FUENTE EN GGOGLE FONT -->

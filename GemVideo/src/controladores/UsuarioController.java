@@ -91,7 +91,7 @@ public class UsuarioController {
 		
 		usuarioGestion.crearPlaylist(nombrePlaylist, usuario.getNombre());
 		
-		return "playVideo";
+		return "videoPlay";
 	}
 	
 	@RequestMapping("/actualizarArtistaFavorito.do")

@@ -55,7 +55,7 @@ public class VideoController {
 		
 		videoGestion.actualizarPlaylist(idPlaylist, idVideo);
 		
-		return "playVideo";
+		return "videoPlay";
 	}
 	
 	

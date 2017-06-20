@@ -183,10 +183,10 @@ public class ProcesarFicheros {
 		ResultadosArtista artistaOk=null; 
 		
 		Fechas fechas=new Fechas(numFechas);
-		
+		resultado=new Resultados();
 		
 		for (int cont=0;cont<numFechas;cont++){
-			resultado=new Resultados();
+			
 			
 			this.after=fechas.getFechaItems().get(cont).getDesde();
 			this.before=fechas.getFechaItems().get(cont).getHasta();

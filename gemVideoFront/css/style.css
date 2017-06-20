@@ -827,6 +827,67 @@ html,
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
+<<<<<<< HEAD
+    -webkit-box-pack: ;
+    -webkit-justify-content: left;
+    -ms-flex-pack: left;
+    justify-content:flex-start;
+    width: 800px;
+    margin-top: 60px;
+    margin-left: 150px;
+}
+
+.main-video2 {
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 30%;
+}
+
+.main-video2 .video {
+    width: 100%;
+}
+
+
+/*detalle de los mini videos*/
+
+.main-video2 .detalleVideo2 {
+    width: 40%;
+    color: #fff;
+}
+
+
+
+.main-video2 .detalleVideo-up2 h2 {
+    font-family: "Rock Salt", cursive;
+    border-bottom: 2px solid orange;
+}
+
+
+
+
+.main-video2 .detalleVideo-up2 {
+    font-family: "Oswald", sans-serif;
+    margin: 20px 20px;
+    
+}
+
+/*Detalle descripcion minivideos*/
+.caja{
+    
+   font-family: "Oswald", sans-serif;  
+       padding-left: 10px;
+    padding-top: 20px;
+  padding-right: 20px;
+  margin-left:   50px;
+  margin-right:  0px;
+ color:#fff;
+ 
+
+
+    
+}
+    
+
+=======
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -webkit-flex-direction: column;
@@ -914,3 +975,4 @@ html,
       font-family: "Rock Salt", cursive;
       font-size: 0.5em;
       position: absolute; }
+>>>>>>> 476a4a8b1ce6889a6ff1b048fed4828fecb80dfd

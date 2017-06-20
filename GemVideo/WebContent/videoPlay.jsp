@@ -16,7 +16,7 @@
 		<div class="main">
 			<%
 				
-				Video video = (Video) request.getAttribute("video");
+				Video video = (Video) session.getAttribute("video");
 			%>
 			<div class="main-video">
 				<iframe class="iframe"
@@ -41,7 +41,7 @@
 									<%
 										for (PlayList pList : usuario.getPlayLists()) {
 									%>
-									<li><a href="actualizarPlayList.do?id=<%=pList.getId()%>&<%=video.getId()%>"><%=pList.getNombre()%></a></li>
+									<li><a href="actualizarPlaylist.do?idPlaylist=<%=pList.getId()%>&idVideo=<%=video.getId()%>"><%=pList.getNombre()%></a></li>
 
 									<%
 										}

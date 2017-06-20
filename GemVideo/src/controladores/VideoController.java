@@ -21,7 +21,7 @@ import modelo.negocio.ArtistaGestion;
 import modelo.negocio.VideoGestion;
 
 @Controller
-@SessionAttributes(names={"usuario","videosHome"})
+@SessionAttributes(names={"usuario","videosHome","video"})
 public class VideoController {
 
 	@Autowired

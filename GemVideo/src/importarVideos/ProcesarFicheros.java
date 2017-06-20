@@ -5,6 +5,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -131,6 +132,7 @@ public class ProcesarFicheros {
 		//Si el nombretrase blancos, se reemplazan.
 		nombreArtista=nombreArtista.trim();
 		nombreArtista=nombreArtista.replace(" ","%20");
+		nombreArtista=nombreArtista.replace("\"","");
 		
 		
 		
@@ -176,103 +178,66 @@ public class ProcesarFicheros {
 		this.keyApiYouTube ="AIzaSyCjcuqTbqoDs7PMRz9AB3v--LJNWkIzGdM";
 		this.keyApiLastFm ="1e7628d355341dccc256c1c7b60cd480";
 		
-		ArrayList<Resultados> resultados= new ArrayList();
+		ArrayList<Resultados> resultadosAll= new ArrayList();
 		Resultados cancionesFinales= new Resultados ();
 		ArrayList<Videos> videosFinales= new ArrayList();
-		Resultados resultado;
+		Resultados resultados;
 		ResultadosArtista artistaOk=null; 
 		
 		Fechas fechas=new Fechas(numFechas);
-		resultado=new Resultados();
-		
-		for (int cont=0;cont<numFechas;cont++){
+		resultados=new Resultados();
+		LocalDate day= LocalDate.now();
+		while(day.getYear()!=2014){
 			
-			
-			this.after=fechas.getFechaItems().get(cont).getDesde();
-			this.before=fechas.getFechaItems().get(cont).getHasta();
+			String after=day.minusWeeks(1).toString();
+			String before=day.minusWeeks(4).toString();
 			this.url="https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=" + numVideos + "&order=rating&publishedAfter=" + after + "T00%3A00%3A00Z&publishedBefore=" + before + "T00%3A00%3A00Z&q=VEVO+(OFFICIAL%2BVIDEO)&fields=items(id%2FvideoId%2Csnippet(description%2Cthumbnails%2Ctitle))&key=" + this.keyApiYouTube;
-			
+			day= day.minusWeeks(4);
 			System.out.println("url: " + url);
-			
-			resultado = procesarVideosImportarDatos(numVideos);
-			
-			System.out.println("procesarDatos, llamada  " + cont + " resultado: " +  resultado.getItems().size());
-			
-			resultados.add(resultado);
+			resultados = procesarVideosImportarDatos(numVideos);
+			resultadosAll.add(resultados);
+	
 		}
+		System.out.println("****************************************************************");
+		System.out.println("toltal videos:"+resultadosAll.size());
+		System.out.println("****************************************************************");
 		String artista="";
 		boolean videoProcesado=false;
-		for (int cont=0;cont<numFechas;cont++){
-			for (int contVideo=0;contVideo<resultados.get(cont).getItems().size();contVideo++){
-				videoProcesado=false;
-				int maxFoto= resultados.get(cont).getItems().get(contVideo).getSnippet().getThumbnails().size()-1;
-				
-//				System.out.println("Video id: " + resultados.get(cont).getItems().get(contVideo).getId().getVideoId());
-//				System.out.println("titulo id: " + resultados.get(cont).getItems().get(contVideo).getSnippet().getTitle());
-//				System.out.println("Descripcion: " + resultados.get(cont).getItems().get(contVideo).getSnippet().getDescription());
-//				System.out.println("url0: " + resultados.get(cont).getItems().get(contVideo).getSnippet().getThumbnails().get(maxFoto).getHigh().getUrl());
-//				System.out.println("width0: " + resultados.get(cont).getItems().get(contVideo).getSnippet().getThumbnails().get(maxFoto).getHigh().getWidth());
-//				System.out.println("height0: " + resultados.get(cont).getItems().get(contVideo).getSnippet().getThumbnails().get(maxFoto).getHigh().getHeight());
-//				
-				String titulo =  resultados.get(cont).getItems().get(contVideo).getSnippet().getTitle();
-				System.out.println("Titulo: " + titulo);
-				System.out.println("Hay cantante: " + titulo.indexOf( "-" ));
-				 
-				 if (titulo.indexOf( "-" )>0) {
-					String[] autores= resultados.get(cont).getItems().get(contVideo).getSnippet().getTitle().split("-");
-					if (autores.length>0){
-						String[] artistasVideo= autores[0].split(",");
-						if (artistasVideo.length>0){
+		for (Resultados r : resultadosAll) {
+				for (Videos item : r.getItems()) {
+					videoProcesado=false;
+					String titulo =  item.getSnippet().getTitle();
+					
+					 if (titulo.indexOf( "-" )>0) {
+						String[] autores= item.getSnippet().getTitle().split("-");
+						if (autores.length>0){
+							String[] artistasVideo= autores[0].split(",");
+							if(artistasVideo.length==0)
+								artistasVideo[0]=autores[0];
 							for (int contArtista=0;contArtista<artistasVideo.length;contArtista++){
-								System.out.println("artistaV: " + artistasVideo[contArtista]);
-								 artista=artistasVideo[contArtista];
-								artistaOk=procesarArtistas(artista);
-								
-								if (artistaOk.getArtist()!=null){	 
-									 if (artistaOk.getArtist().getImage().get(3).getText()!=""){
-										//Procesar artista.
-										 procesarArtista(resultados.get(cont).getItems().get(contVideo),artistaOk,videoProcesado);
-										 videoProcesado=true;
-									}
-								 }
-							}
-						}
-						else
-						{
-							 artista=autores[0];
-							 System.out.println("artista1: " + autores[0]);
-							 artistaOk=procesarArtistas(artista);
-							 if (artistaOk.getArtist()!=null){	 
-								 if (artistaOk.getArtist().getImage().get(3).getText()!=""){
-									 procesarArtista(resultados.get(cont).getItems().get(contVideo),artistaOk,videoProcesado);
-									 videoProcesado=true;
-									//Procesar artista.
+								  artista=artistasVideo[contArtista];
+									artistaOk=procesarArtistas(artista);
+									
+									if (artistaOk.getArtist()!=null){	 
+										 if (artistaOk.getArtist().getImage().get(3).getText()!=""){
+											//Procesar artista.
+											 procesarArtista(item,artistaOk);
+											 }
+									 }
 								}
-							 }
 						}
-						if (artistaOk.getArtist()!=null){
-							System.out.println("getArtist().getName                           : " +  artistaOk.getArtist().getName());
-							System.out.println("getArtist().getImage().size                   : " +  artistaOk.getArtist().getImage().size());
-							System.out.println("getArtist().getImage.get(3).getText           : " +  artistaOk.getArtist().getImage().get(3).getText());
-							System.out.println("response.getArtist().getImage().get(3).getSize: " +  artistaOk.getArtist().getImage().get(3).getSize());
-							
-							
-						}
-						else
-						{
-							System.out.println("artista no encontrado: " + artista);	
-						}
-						
-	//					cancionesFinales.add(resultados.get(cont));
-	//					System.out.println("titulo id: " + cancionesFinales.get(cancionesFinales.size()-1).getItems().get(contVideo).getSnippet().getTitle());
-					}
-				 }
+					 }		
+					
+					
+				}
 			}
-		}
-
+				
 	}
+		
+
 	
-	public void procesarArtista(Videos video,ResultadosArtista artista,boolean videoProcesado){
+	
+	public void procesarArtista(Videos video,ResultadosArtista artista){
 		Video videoNuevo= new Video();
 		Video videoCreado= new Video(); 
 		
@@ -286,26 +251,19 @@ public class ProcesarFicheros {
 		videoNuevo.setDescripcion(video.getSnippet().getDescription());
 		videoNuevo.setUrl(video.getId().getVideoId());
 		videoNuevo.setThumbnail(video.getSnippet().getThumbnails().get(0).getHigh().getUrl());
-		boolean videoGrabado=true;
+		
 		
 		List<Video> existeVideo = new ArrayList();
 		//grabar video
 		String titulo=videoNuevo.getTitulo();
-		existeVideo=videoGestion.buscarVideos(titulo);
-		if (existeVideo.size() == 0)
-			videoCreado=videoGestion.registro(videoNuevo);
-		else
-			videoCreado=existeVideo.get(0);
+		videoCreado=videoGestion.registro(videoNuevo);
 		
 		//grabar artista.
-		
-		if ( videoGrabado){
-			
-		
+				
 			artistaNuevo.setNombre(artista.getArtist().getName());
 			artistaNuevo.setImagen(artista.getArtist().getImage().get(3).getText());
-			
 			List<Artista> artistaActual=artistaGestion.buscarArtista(artistaNuevo);
+			
 			List<Video> videos = new ArrayList();
 			if (artistaActual.size() == 0){
 				videos.add(videoCreado);
@@ -319,7 +277,7 @@ public class ProcesarFicheros {
 				artistaNuevo.setListaVideos(videos);
 				artistaGestion.actualiza(artistaNuevo);
 			}
-		}
+		
 		
 	}
 	public  Resultados procesarVideosImportarDatos(int numVideos) {

@@ -63,7 +63,7 @@ public class VideoGestion {
 	public PlayList reprodPlaylist(Integer idPlaylist){
 		PlayList playList = playlistRepo.findOne(idPlaylist);
 		return playList;
-	}
+	} 
 	
 	
 }

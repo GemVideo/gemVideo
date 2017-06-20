@@ -71,7 +71,7 @@ public class VideoController {
 		
 		return "resultBusqueda";
 	}
-	
+	 
 	@RequestMapping("/reprodPlaylist.do")
 	public String reprodPlaylist(@RequestParam("id")Integer idVideo, Model model){
 		PlayList playList = videoGestion.reprodPlaylist(idVideo);

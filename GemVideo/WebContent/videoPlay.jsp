@@ -16,7 +16,7 @@
 		<div class="main">
 			<%
 				
-				Video video = (Video) request.getAttribute("video");
+				Video video = (Video) session.getAttribute("video");
 			%>
 			<div class="main-video">
 				<iframe class="iframe"

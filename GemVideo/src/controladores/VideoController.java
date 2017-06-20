@@ -3,6 +3,7 @@ package controladores;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import entidades.Artista;
+import entidades.PlayList;
 import entidades.Video;
 import modelo.negocio.ArtistaGestion;
 import modelo.negocio.VideoGestion;
@@ -68,6 +70,13 @@ public class VideoController {
 		model.addAttribute("artistasBuscados", artistas);
 		
 		return "resultBusqueda";
+	}
+	
+	@RequestMapping("/reprodPlaylist.do")
+	public String reprodPlaylist(@RequestParam("id")Integer idVideo, Model model){
+		PlayList playList = videoGestion.reprodPlaylist(idVideo);
+		model.addAttribute("playlist", playList);
+		return "reprodPlaylist";
 	}
 	
 	public VideoGestion getVideoGestion() {

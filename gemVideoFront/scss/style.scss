@@ -236,9 +236,11 @@ sans-serif;
         opacity: 1;
     }
 }
-.colorFavorito{
-    color:orange;
+
+.colorFavorito {
+    color: orange;
 }
+
 .isHide {
     display: none;
 }
@@ -683,7 +685,7 @@ html,
 .main {
     display: flex;
     justify-content: space-around;
-    width: 800px;
+    width: 1000px;
     margin: 0 auto;
     margin-top: 50px;
     margin-bottom: 40px;
@@ -839,20 +841,19 @@ html,
         margin: 10px 0;
         display: flex;
         justify-content: flex-star;
-        i{
+        i {
             font-size: $font-size-large-x*3.5;
         }
-        .datos{
+        .datos {
             display: flex;
             flex-direction: column;
             text-align: left;
             line-height: 1.5;
             margin-left: 10px;
-            span{
-               font-size: $font-size-large;
+            span {
+                font-size: $font-size-large;
             }
         }
-        
     }
     &-espacio {
         width: 100%;
@@ -955,4 +956,77 @@ html,
             position: absolute;
         }
     }
+}
+
+//css gabi reprodPlaylist2.html
+
+/*css Gabi*/
+
+.gabiPlay {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.main2 {
+    width: 73%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.main-video2 {
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 40%;
+    // margin-left: 50px;
+    display: inline-block;
+    height: 150px;
+}
+
+.main-video2 img {
+    width: 100%;
+    height: 150px;
+}
+
+
+/*detalle de los mini videos*/
+
+.main-video2 .detalleVideo-up2 h2 {
+    font-family: "Rock Salt", cursive;
+    border-bottom: 2px solid orange;
+}
+
+.main-video2 .detalleVideo-up2 {
+    font-family: "Oswald", sans-serif;
+    margin: 20px 20px;
+}
+
+
+/*Detalle descripcion minivideos*/
+
+.caja {
+    line-height: 1.5;
+    width: 60%;
+    font-family: "Oswald", sans-serif;
+    padding-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    margin-left: 10px;
+    margin-right: 0px;
+    //margin-bottom: 60px;
+    //margin-top: 30px;
+    color: #fff;
+    display: inline-block;
+    h3 {
+        color: orange;
+        font-family: $font1;
+        font-size: $font-size-small;
+        display: inline-block;
+    }
+}
+
+.desc {
+    font-size: $font-size-small;
+    line-height: 0;
 }

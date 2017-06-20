@@ -18,7 +18,7 @@ public class Image {
 		this.texto = text;
 	}
 	
-	@XmlElement(name="#text")
+	@XmlElement(name="size")
 	public String getSize() {
 		return size;
 	}

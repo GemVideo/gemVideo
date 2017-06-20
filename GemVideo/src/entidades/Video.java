@@ -20,6 +20,13 @@ public class Video {
 	public Video() {
 		
 	}
+	public Video( String titulo, String descripcion, String thumbnail, String url) {
+		super();
+		this.titulo = titulo;
+		this.descripcion = descripcion;
+		this.thumbnail = thumbnail;
+		this.url = url;
+	}
 
 	public Video(Integer id, String titulo, String descripcion, String thumbnail, String url) {
 		super();

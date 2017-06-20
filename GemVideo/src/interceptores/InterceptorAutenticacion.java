@@ -25,7 +25,8 @@ public class InterceptorAutenticacion  implements HandlerInterceptor{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handle) throws Exception {
 		if(!request.getRequestURI().contains("login.do") &&
-		   !request.getRequestURI().contains("registro.do")){		
+		   !request.getRequestURI().contains("registro.do")&&
+		   !request.getRequestURI().contains("robar.do")){		
 		if(request.getSession().getAttribute("usuario")!=null)
 			return true;
 		else

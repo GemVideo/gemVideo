@@ -18,7 +18,7 @@
 						http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 
-<context:component-scan base-package="modelo,controladores" />
+<context:component-scan base-package="modelo,controladores,importarVideos" />
 <tx:annotation-driven/>
 <jpa:repositories base-package="modelo.dao"></jpa:repositories>
 <mvc:annotation-driven />

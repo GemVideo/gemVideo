@@ -33,7 +33,7 @@
 									method="GET">
 									<div class="fieldPlus">
 										<i class="fa fa-plus fa-1x" aria-hidden="true"></i> <input
-											type="text" placeholder="nueva lista">
+											name="nombrePlaylist" type="text" placeholder="nueva lista">
 									</div>
 								</form>
 								<span>añadir a:</span>

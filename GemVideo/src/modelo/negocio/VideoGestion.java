@@ -35,9 +35,9 @@ public class VideoGestion {
 		playlistRepo.save(playlist);
 	}
 
-	public List<Video> buscarVideos(String busqueda) {
+	public List<Video> buscarVideos(String nombre) {
 		
-		List<Video> videos = videoRepo.findByTitulo(busqueda);
+		List<Video> videos = videoRepo.findByTitulo(nombre);
 		return videos;
 	}
 

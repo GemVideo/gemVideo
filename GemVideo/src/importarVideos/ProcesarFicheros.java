@@ -169,6 +169,8 @@ public class ProcesarFicheros {
 							 artistaOk=procesarArtistas(artista);
 							 if (artistaOk.getArtist()!=null){	 
 								 if (artistaOk.getArtist().getImage().get(3).getText()!=""){
+									 procesarArtista(resultados.get(cont).getItems().get(contVideo),artistaOk,videoProcesado);
+									 videoProcesado=true;
 									//Procesar artista.
 								}
 							 }
@@ -214,7 +216,8 @@ public class ProcesarFicheros {
 		if (!videoProcesado){
 			List<Video> existeVideo = new ArrayList();
 			//grabar video
-			existeVideo=videoGestion.buscarVideos(videoNuevo.getTitulo());
+			String titulo=videoNuevo.getTitulo();
+			existeVideo=videoGestion.buscarVideos(titulo);
 			if (existeVideo!=null)
 				videoGestion.registro(videoNuevo);
 		}

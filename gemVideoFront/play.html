@@ -45,7 +45,7 @@
                         <div id="play1" class="agregarVideo">
                             play
                         </div>
-                         <div id="play2" class="agregarVideo">
+                        <div id="play2" class="agregarVideo">
                             aleatorio
                         </div>
                     </div>
@@ -58,23 +58,27 @@
         <p>By gemVideo <i class="fa fa-copyright fa-1x" aria-hidden="true"></i> 2017</p>
     </div>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
+
+            //https://www.youtube.com/embed/dpuIuJYfPi0?autoplay=1&loop=1&playlist=X0Y61bu0TKw,Vn6N184C2aQ,TPMEviaFWLg
             arrayVideos = ['dpuIuJYfPi0', 'Vn6N184C2aQ', 'TPMEviaFWLg'];
             $urlInicial = "https://www.youtube.com/embed/";
             $primerVideo = "dpuIuJYfPi0";
             $configVideo = "?autoplay=1&loop=1&playlist=";
             $listaVideos = "X0Y61bu0TKw,Vn6N184C2aQ,TPMEviaFWLg";
-            $('#play1').click(function () {
-                $('.iframe').attr("src", listaOrdenada($arrayVideos));
+            $('#play1').click(function() {
+                $('.iframe').attr("src", "https://www.youtube.com/embed/dpuIuJYfPi0?autoplay=1&loop=1&playlist=X0Y61bu0TKw,Vn6N184C2aQ,TPMEviaFWLg");
             });
-            $('#play2').click(function () {
+            $('#play2').click(function() {
                 $('.iframe').attr("src", listaDesordenada(arrayVideos));
             });
-            function listaDesordenada(arrayVideos) {
-               return  arrayVideos = arrayVideos.sort(function () { 
-                    return Math.random() - 0.5 });
 
-               // return $urlInicial + $primerVideo + $configVideo + $listaVideos;
+            function listaDesordenada(arrayVideos) {
+                return arrayVideos = arrayVideos.sort(function() {
+                    return Math.random() - 0.5
+                });
+
+                // return $urlInicial + $primerVideo + $configVideo + $listaVideos;
             }
         });
     </script>

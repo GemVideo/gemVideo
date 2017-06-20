@@ -95,7 +95,7 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping("/actualizarArtistaFavorito.do")
-	public String actualizarArtista(@RequestParam("idArtista")Integer idArtist,
+	public String actualizarArtista(@RequestParam("id")Integer idArtist,
 			@SessionAttribute("usuario")Usuario usuario){
 		
 			usuarioGestion.actualizarArtistaFavorito(idArtist,usuario.getNombre());

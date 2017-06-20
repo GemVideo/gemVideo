@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import entidades.PlayList;
+import entidades.Usuario;
 import entidades.Video;
 import modelo.dao.PlaylistRepository;
 import modelo.dao.VideoRepository;
@@ -43,5 +44,17 @@ public class VideoGestion {
 	public List<Video> obtenerPeliculasHome() {
 		List<Video> videos = videoRepo.findFirst12ByOrderByTitulo();
 		return videos;
+	}
+	
+	@Transactional
+	public boolean registro(Video video){
+		
+		if(videoRepo.findByTitulo(video.getTitulo()) == null){
+			videoRepo.save(video);
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }

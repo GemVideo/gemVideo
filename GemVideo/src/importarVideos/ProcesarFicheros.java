@@ -17,6 +17,9 @@ import javax.ws.rs.core.UriBuilder;
 import org.apache.commons.io.IOUtils;
 import org.glassfish.jersey.client.ClientConfig;
 
+import entidades.Video;
+import modelo.negocio.VideoGestion;
+
 
 
 public class ProcesarFicheros { 
@@ -191,8 +194,21 @@ public class ProcesarFicheros {
 	}
 	
 	public void procesarArtista(Videos video,ResultadosArtista artistaOk,boolean videoProcesado){
+		VideoGestion videoGestion=new VideoGestion();
+		Video videoNuevo= new Video();
+		
+		
+		
+		
+		//public Video( String titulo, String descripcion, String thumbnail, String url) {
+		
 		if (!videoProcesado){
 			//grabar video
+			videoNuevo.setTitulo(video.getSnippet().getTitle());
+			videoNuevo.setDescripcion(video.getSnippet().getDescription());
+			videoNuevo.setUrl(video.getId().getVideoId());
+			videoNuevo.setThumbnail(video.getSnippet().getThumbnails().get(0).getHigh().getUrl());
+			videoGestion.registro(videoNuevo);
 		}
 		//grabar artista.
 	}

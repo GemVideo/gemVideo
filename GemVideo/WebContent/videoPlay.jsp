@@ -61,7 +61,7 @@
 						<%
 						for (PlayList pList : usuario.getPlayLists()) {
 						%>
-						<li><i class="fa fa-th-list fa-1x" aria-hidden="true"></i><a href="playVideo.do"><%=pList.getNombre()%></a></li>
+						<li><i class="fa fa-th-list fa-1x" aria-hidden="true"></i><%=pList.getNombre()%></li>
 
 						<%
 							}

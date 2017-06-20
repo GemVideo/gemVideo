@@ -16,6 +16,8 @@ import javax.ws.rs.core.UriBuilder;
 
 import org.apache.commons.io.IOUtils;
 import org.glassfish.jersey.client.ClientConfig;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import entidades.Artista;
 import entidades.Video;
@@ -23,7 +25,7 @@ import modelo.negocio.ArtistaGestion;
 import modelo.negocio.VideoGestion;
 
 
-
+@Service
 public class ProcesarFicheros { 
 	private Integer  numVideos;
 	private Integer  numFechas; 
@@ -32,30 +34,96 @@ public class ProcesarFicheros {
 	private String after;
 	private String before;
 	
+	public Integer getNumVideos() {
+		return numVideos;
+	}
+	public void setNumVideos(Integer numVideos) {
+		this.numVideos = numVideos;
+	}
+	public Integer getNumFechas() {
+		return numFechas;
+	}
+	public void setNumFechas(Integer numFechas) {
+		this.numFechas = numFechas;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public String getAfter() {
+		return after;
+	}
+	public void setAfter(String after) {
+		this.after = after;
+	}
+	public String getBefore() {
+		return before;
+	}
+	public void setBefore(String before) {
+		this.before = before;
+	}
+	public ArtistaGestion getArtistaGestion() {
+		return artistaGestion;
+	}
+	public void setArtistaGestion(ArtistaGestion artistaGestion) {
+		this.artistaGestion = artistaGestion;
+	}
+	public VideoGestion getVideoGestion() {
+		return videoGestion;
+	}
+	public void setVideoGestion(VideoGestion videoGestion) {
+		this.videoGestion = videoGestion;
+	}
+	public String getKeyApiYouTube() {
+		return keyApiYouTube;
+	}
+	public void setKeyApiYouTube(String keyApiYouTube) {
+		this.keyApiYouTube = keyApiYouTube;
+	}
+	public String getKeyApiLastFm() {
+		return keyApiLastFm;
+	}
+	public void setKeyApiLastFm(String keyApiLastFm) {
+		this.keyApiLastFm = keyApiLastFm;
+	}
+
+
+
+	@Autowired
+	ArtistaGestion  artistaGestion;
+	@Autowired
+	VideoGestion  videoGestion;
 	
 	private String keyApiYouTube ;
 	private String keyApiLastFm ;
 	
+	
 	public ProcesarFicheros(){
-		this.numVideos=40;
-		this.numFechas=1;
-		
-		this.keyApiYouTube ="AIzaSyCjcuqTbqoDs7PMRz9AB3v--LJNWkIzGdM";
-		this.keyApiLastFm ="1e7628d355341dccc256c1c7b60cd480";
-		
 	
 	}
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-		ProcesarFicheros procesarFicheros= new ProcesarFicheros();
-		
-		procesarFicheros.procesarVideos();
-		
-		//procesarFicheros.procesarArtistas("Elvis Presley");
-		
-
-	}
+	
+//	public ProcesarFicheros(){
+//		this.numVideos=40;
+//		this.numFechas=1;
+//		
+//		this.keyApiYouTube ="AIzaSyCjcuqTbqoDs7PMRz9AB3v--LJNWkIzGdM";
+//		this.keyApiLastFm ="1e7628d355341dccc256c1c7b60cd480";
+//		
+//	
+//	}
+//	public void robar() {
+//		// TODO Auto-generated method stub
+//		
+//		ProcesarFicheros procesarFicheros= new ProcesarFicheros();
+//		
+//		procesarFicheros.procesarVideos();
+//		
+//		//procesarFicheros.procesarArtistas("Elvis Presley");
+//		
+//
+//	}
 	
 	
 	public ResultadosArtista procesarArtistas(String nombreArtista){
@@ -101,6 +169,13 @@ public class ProcesarFicheros {
 	
 	
 	public void procesarVideos(){
+		
+		this.numVideos=50;
+		this.numFechas=10;
+		
+		this.keyApiYouTube ="AIzaSyCjcuqTbqoDs7PMRz9AB3v--LJNWkIzGdM";
+		this.keyApiLastFm ="1e7628d355341dccc256c1c7b60cd480";
+		
 		ArrayList<Resultados> resultados= new ArrayList();
 		Resultados cancionesFinales= new Resultados ();
 		ArrayList<Videos> videosFinales= new ArrayList();
@@ -198,10 +273,9 @@ public class ProcesarFicheros {
 	}
 	
 	public void procesarArtista(Videos video,ResultadosArtista artista,boolean videoProcesado){
-		VideoGestion videoGestion=new VideoGestion();
 		Video videoNuevo= new Video();
+		Video videoCreado= new Video(); 
 		
-		ArtistaGestion  artistaGestion= new ArtistaGestion();
 		Artista artistaNuevo=new Artista();
 		
 		
@@ -212,31 +286,39 @@ public class ProcesarFicheros {
 		videoNuevo.setDescripcion(video.getSnippet().getDescription());
 		videoNuevo.setUrl(video.getId().getVideoId());
 		videoNuevo.setThumbnail(video.getSnippet().getThumbnails().get(0).getHigh().getUrl());
+		boolean videoGrabado=true;
 		
-		if (!videoProcesado){
-			List<Video> existeVideo = new ArrayList();
-			//grabar video
-			String titulo=videoNuevo.getTitulo();
-			existeVideo=videoGestion.buscarVideos(titulo);
-			if (existeVideo!=null)
-				videoGestion.registro(videoNuevo);
-		}
+		List<Video> existeVideo = new ArrayList();
+		//grabar video
+		String titulo=videoNuevo.getTitulo();
+		existeVideo=videoGestion.buscarVideos(titulo);
+		if (existeVideo.size() == 0)
+			videoCreado=videoGestion.registro(videoNuevo);
+		else
+			videoCreado=existeVideo.get(0);
+		
 		//grabar artista.
-		artistaNuevo.setNombre(artista.getArtist().getName());
-		artistaNuevo.setImagen(artista.getArtist().getImage().get(3).getText());
 		
-		List<Artista> artistaActual=artistaGestion.buscarArtista(artistaNuevo);
-		List<Video> videos = new ArrayList();
-		if (artistaActual==null){
-			videos.add(videoNuevo);
-			artistaNuevo.setListaVideos(videos);
-			artistaGestion.registro(artistaNuevo);
-		}
-		else{
-			videos=artistaActual.get(0).getListaVideos();
-			videos.add(videoNuevo);
-			artistaNuevo.setListaVideos(videos);
-			artistaGestion.actualiza(artistaNuevo);
+		if ( videoGrabado){
+			
+		
+			artistaNuevo.setNombre(artista.getArtist().getName());
+			artistaNuevo.setImagen(artista.getArtist().getImage().get(3).getText());
+			
+			List<Artista> artistaActual=artistaGestion.buscarArtista(artistaNuevo);
+			List<Video> videos = new ArrayList();
+			if (artistaActual.size() == 0){
+				videos.add(videoCreado);
+				artistaNuevo.setListaVideos(videos);
+				artistaGestion.registro(artistaNuevo);
+			}
+			else{
+				artistaNuevo=artistaActual.get(0);
+				videos=artistaNuevo.getListaVideos();
+				videos.add(videoCreado);
+				artistaNuevo.setListaVideos(videos);
+				artistaGestion.actualiza(artistaNuevo);
+			}
 		}
 		
 	}

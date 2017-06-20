@@ -37,7 +37,7 @@ public class ArtistaGestion {
 	@Transactional
 	public boolean registro(Artista artista){
 		List<Artista> artistas = artistaRepo.findByNombre(artista.getNombre());
-		if (artistas==null){
+		if (artistas.size()==0){
 			artistaRepo.save(artista);
 			return true;
 		}
@@ -49,7 +49,7 @@ public class ArtistaGestion {
 	@Transactional
 	public boolean actualiza(Artista artista){
 		List<Artista> artistas = artistaRepo.findByNombre(artista.getNombre());
-		if (artistas!=null){
+		if (artistas.size()>0){
 			artistaRepo.save(artista);
 			return true;
 		}

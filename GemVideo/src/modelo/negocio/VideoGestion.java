@@ -47,14 +47,16 @@ public class VideoGestion {
 	}
 	
 	@Transactional
-	public boolean registro(Video video){
+	public Video registro(Video video){
+		Video videoConfirmado=null;
 		List <Video> videos = videoRepo.findByTitulo(video.getTitulo()) ;
-		if(videos  == null){
-			videoRepo.save(video);
-			return true;
+		if(videos.size() == 0)
+		{
+			videoConfirmado=videoRepo.save(video);
+			return videoConfirmado;
 		}
 		else {
-			return false;
+			return videoConfirmado;
 		}
 	}
 	

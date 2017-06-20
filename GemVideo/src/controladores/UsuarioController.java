@@ -91,11 +91,11 @@ public class UsuarioController {
 		
 		usuarioGestion.crearPlaylist(nombrePlaylist, usuario.getNombre());
 		
-		return "playVideo";
+		return "videoPlay";
 	}
 	
 	@RequestMapping("/actualizarArtistaFavorito.do")
-	public String actualizarArtista(@RequestParam("idArtista")Integer idArtist,
+	public String actualizarArtista(@RequestParam("id")Integer idArtist,
 			@SessionAttribute("usuario")Usuario usuario){
 		
 			usuarioGestion.actualizarArtistaFavorito(idArtist,usuario.getNombre());

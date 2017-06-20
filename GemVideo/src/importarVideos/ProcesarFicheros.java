@@ -32,7 +32,7 @@ public class ProcesarFicheros {
 	private String keyApiLastFm ;
 	
 	public ProcesarFicheros(){
-		this.numVideos=2;
+		this.numVideos=40;
 		this.numFechas=1;
 		
 		this.keyApiYouTube ="AIzaSyCjcuqTbqoDs7PMRz9AB3v--LJNWkIzGdM";
@@ -53,10 +53,12 @@ public class ProcesarFicheros {
 	}
 	
 	
-	public void procesarArtistas(String nombreArtista){
+	public ResultadosArtista procesarArtistas(String nombreArtista){
 		
 		//Si el nombretrase blancos, se reemplazan.
+		nombreArtista=nombreArtista.trim();
 		nombreArtista=nombreArtista.replace(" ","%20");
+		
 		
 		
 		this.url="http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + nombreArtista + "&lang=ES&api_key=" + this.keyApiLastFm + "&format=json";
@@ -78,15 +80,17 @@ public class ProcesarFicheros {
 							get(ResultadosArtista.class);//al builder le decimos que construya un get request y le indicamos en que tipo de objeto queremos que nos empaquete la respuesta
 		
 		
-		System.out.println( "finalizado 1" );
+		System.out.println( "finalizado llamar artista." );
 		System.out.println( "url: " + this.url );
-		
-		System.out.println("eeee " +  response.getArtist().getName());
-		System.out.println("eeee " +  response.getArtist().getImage().size());
-		System.out.println("imagen3: " +  response.getArtist().getImage().get(3).getText());
-		System.out.println("size3: " +  response.getArtist().getImage().get(3).getSize());
+//		if (response!=null) {
+//			System.out.println("getArtist().getName                           : " +  response.getArtist().getName());
+//			System.out.println("getArtist().getImage().size                   : " +  response.getArtist().getImage().size());
+//			System.out.println("getArtist().getImage.get(3).getText           : " +  response.getArtist().getImage().get(3).getText());
+//			System.out.println("response.getArtist().getImage().get(3).getSize: " +  response.getArtist().getImage().get(3).getSize());
+//		}
 		System.out.println("");
-		System.out.println("fin proceso de llamada");
+		System.out.println("fin proceso de llamada artista");
+		return response;
 		
 	}
 	
@@ -96,6 +100,7 @@ public class ProcesarFicheros {
 		Resultados cancionesFinales= new Resultados ();
 		ArrayList<Videos> videosFinales= new ArrayList();
 		Resultados resultado;
+		ResultadosArtista artistaOk=null; 
 		
 		Fechas fechas=new Fechas(numFechas);
 		
@@ -115,26 +120,66 @@ public class ProcesarFicheros {
 			
 			resultados.add(resultado);
 		}
-		
+		String artista="";
+		boolean videoProcesado=false;
 		for (int cont=0;cont<numFechas;cont++){
 			for (int contVideo=0;contVideo<resultados.get(cont).getItems().size();contVideo++){
+				videoProcesado=false;
 				int maxFoto= resultados.get(cont).getItems().get(contVideo).getSnippet().getThumbnails().size()-1;
 				
-				System.out.println("Video id: " + resultados.get(cont).getItems().get(contVideo).getId().getVideoId());
-				System.out.println("titulo id: " + resultados.get(cont).getItems().get(contVideo).getSnippet().getTitle());
-				System.out.println("Descripcion: " + resultados.get(cont).getItems().get(contVideo).getSnippet().getDescription());
-				System.out.println("url0: " + resultados.get(cont).getItems().get(contVideo).getSnippet().getThumbnails().get(maxFoto).getDefault1().getUrl());
-				System.out.println("width0: " + resultados.get(cont).getItems().get(contVideo).getSnippet().getThumbnails().get(maxFoto).getDefault1().getWidth());
-				System.out.println("height0: " + resultados.get(cont).getItems().get(contVideo).getSnippet().getThumbnails().get(maxFoto).getDefault1().getHeight());
-				
+//				System.out.println("Video id: " + resultados.get(cont).getItems().get(contVideo).getId().getVideoId());
+//				System.out.println("titulo id: " + resultados.get(cont).getItems().get(contVideo).getSnippet().getTitle());
+//				System.out.println("Descripcion: " + resultados.get(cont).getItems().get(contVideo).getSnippet().getDescription());
+//				System.out.println("url0: " + resultados.get(cont).getItems().get(contVideo).getSnippet().getThumbnails().get(maxFoto).getHigh().getUrl());
+//				System.out.println("width0: " + resultados.get(cont).getItems().get(contVideo).getSnippet().getThumbnails().get(maxFoto).getHigh().getWidth());
+//				System.out.println("height0: " + resultados.get(cont).getItems().get(contVideo).getSnippet().getThumbnails().get(maxFoto).getHigh().getHeight());
+//				
 				String titulo =  resultados.get(cont).getItems().get(contVideo).getSnippet().getTitle();
 				System.out.println("Titulo: " + titulo);
-				System.out.println(titulo.indexOf( "-" ));
+				System.out.println("Hay cantante: " + titulo.indexOf( "-" ));
 				 
 				 if (titulo.indexOf( "-" )>0) {
 					String[] autores= resultados.get(cont).getItems().get(contVideo).getSnippet().getTitle().split("-");
 					if (autores.length>0){
-						System.out.println("artista: " + autores[0]);
+						String[] artistasVideo= autores[0].split(",");
+						if (artistasVideo.length>0){
+							for (int contArtista=0;contArtista<artistasVideo.length;contArtista++){
+								System.out.println("artistaV: " + artistasVideo[contArtista]);
+								 artista=artistasVideo[contArtista];
+								artistaOk=procesarArtistas(artista);
+								
+								if (artistaOk.getArtist()!=null){	 
+									 if (artistaOk.getArtist().getImage().get(3).getText()!=""){
+										//Procesar artista.
+										 procesarArtista(resultados.get(cont).getItems().get(contVideo),artistaOk,videoProcesado);
+										 videoProcesado=true;
+									}
+								 }
+							}
+						}
+						else
+						{
+							 artista=autores[0];
+							 System.out.println("artista1: " + autores[0]);
+							 artistaOk=procesarArtistas(artista);
+							 if (artistaOk.getArtist()!=null){	 
+								 if (artistaOk.getArtist().getImage().get(3).getText()!=""){
+									//Procesar artista.
+								}
+							 }
+						}
+						if (artistaOk.getArtist()!=null){
+							System.out.println("getArtist().getName                           : " +  artistaOk.getArtist().getName());
+							System.out.println("getArtist().getImage().size                   : " +  artistaOk.getArtist().getImage().size());
+							System.out.println("getArtist().getImage.get(3).getText           : " +  artistaOk.getArtist().getImage().get(3).getText());
+							System.out.println("response.getArtist().getImage().get(3).getSize: " +  artistaOk.getArtist().getImage().get(3).getSize());
+							
+							
+						}
+						else
+						{
+							System.out.println("artista no encontrado: " + artista);	
+						}
 						
 	//					cancionesFinales.add(resultados.get(cont));
 	//					System.out.println("titulo id: " + cancionesFinales.get(cancionesFinales.size()-1).getItems().get(contVideo).getSnippet().getTitle());
@@ -145,6 +190,12 @@ public class ProcesarFicheros {
 
 	}
 	
+	public void procesarArtista(Videos video,ResultadosArtista artistaOk,boolean videoProcesado){
+		if (!videoProcesado){
+			//grabar video
+		}
+		//grabar artista.
+	}
 	public  Resultados procesarVideosImportarDatos(int numVideos) {
 		this.numVideos=numVideos;
 		

@@ -11,11 +11,11 @@
 <body class="body">
 	<div class="container">
 		<%@ include file="templates/nav.jsp"%>
-		<%@ inlcude file="templates/usuario.jsp"%>
+		<%@ include file="templates/usuario.jsp"%>
 		<!-- playVideo-->
 		<div class="main">
 			<%
-				Usuario usuario = (Usuario) session.getAttribute("usuario");
+				
 				Video video = (Video) request.getAttribute("video");
 			%>
 			<div class="main-video">

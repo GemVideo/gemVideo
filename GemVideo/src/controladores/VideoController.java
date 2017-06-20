@@ -39,12 +39,12 @@ public class VideoController {
 	}
 	
 	@RequestMapping("/playVideo.do")
-	public String playVideo(@RequestParam("idVideo")Integer idVideo, Model model){
+	public String playVideo(@RequestParam("id")Integer idVideo, Model model){
 		
 		Video video = videoGestion.playVideo(idVideo);
 		model.addAttribute("video", video); //lo añado para cogerlo desde el request en la vista
 		
-		return "playVideo";
+		return "videoPlay";
 	}
 
 	//para actualizarla le añado el video a la playlist, sin tocar el usuario, que se

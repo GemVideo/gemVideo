@@ -25,7 +25,7 @@
 				
 				<div class="detalleVideo">
 					<div class="detalleVideo-up">
-						<h2><%=video.getTitulo()%></h2>
+						<h3><%=video.getTitulo()%></h3>
 						<div id="agregarVideo" class="agregarVideo">añade video</div>
 						<div id="vista" class="contentAnadir isHide">
 							<div class="playLists2">
@@ -53,7 +53,7 @@
 					<p><%=video.getDescripcion()%></p>
 
 				</div>
-			</div>
+			
 			<div class="main-playList">
 				<h3>Mis PlayList</h3>
 				<div class="playLists">
@@ -69,6 +69,7 @@
 					</ul>
 				</div>
 			</div>
+		</div>
 		</div>
 	<!-- playVideo-->
 	</div>

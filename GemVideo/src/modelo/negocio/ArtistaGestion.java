@@ -3,10 +3,13 @@ package modelo.negocio;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import entidades.Artista;
+import entidades.Video;
 import modelo.dao.ArtistaRepository;
 
 @Service
@@ -29,6 +32,19 @@ public class ArtistaGestion {
 	public Artista mostrarArtista(Integer idArtista) {
 
 		return artistaRepo.findOne(idArtista);
+	}
+	
+	@Transactional
+	public boolean registro(Artista artista){
+		
+		List<Artista> artistas = artistaRepo.findByNombre(artista.getNombre());
+		if (artistas==null){
+			artistaRepo.save(artista);
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 }

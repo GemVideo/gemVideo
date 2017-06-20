@@ -48,8 +48,8 @@ public class VideoGestion {
 	
 	@Transactional
 	public boolean registro(Video video){
-		
-		if(videoRepo.findByTitulo(video.getTitulo()) == null){
+		List <Video> videos = videoRepo.findByTitulo(video.getTitulo()) ;
+		if(videos  == null){
 			videoRepo.save(video);
 			return true;
 		}

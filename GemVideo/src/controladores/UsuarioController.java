@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import entidades.Artista;
 import entidades.Usuario;
+import modelo.negocio.ArtistaGestion;
 import modelo.negocio.UsuarioGestion;
 
 @Controller
@@ -23,6 +25,8 @@ public class UsuarioController {
 
 	@Autowired
 	UsuarioGestion usuarioGestion;
+	@Autowired
+	ArtistaGestion artistaGestion;
 	
 	public UsuarioGestion getUsuarioGestion() {
 		return usuarioGestion;
@@ -96,10 +100,11 @@ public class UsuarioController {
 	
 	@RequestMapping("/actualizarArtistaFavorito.do")
 	public String actualizarArtista(@RequestParam("id")Integer idArtist,
-			@SessionAttribute("usuario")Usuario usuario){
-		
-			usuarioGestion.actualizarArtistaFavorito(idArtist,usuario.getNombre());
+			@SessionAttribute("usuario")Usuario usuario,Model model){
 			
+			usuarioGestion.actualizarArtistaFavorito(idArtist,usuario.getNombre());			
+			Artista artista = artistaGestion.mostrarArtista(idArtist);
+			model.addAttribute("artista", artista);
 			return "mostrarArtista";
 	}
 	

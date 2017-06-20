@@ -36,7 +36,6 @@ public class ArtistaGestion {
 	
 	@Transactional
 	public boolean registro(Artista artista){
-		
 		List<Artista> artistas = artistaRepo.findByNombre(artista.getNombre());
 		if (artistas==null){
 			artistaRepo.save(artista);
@@ -44,6 +43,30 @@ public class ArtistaGestion {
 		}
 		else {
 			return false;
+		}
+	}
+	
+	@Transactional
+	public boolean actualiza(Artista artista){
+		List<Artista> artistas = artistaRepo.findByNombre(artista.getNombre());
+		if (artistas!=null){
+			artistaRepo.save(artista);
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	
+	
+	public List<Artista>  buscarArtista(Artista artista){
+		List<Artista> artistas = artistaRepo.findByNombre(artista.getNombre());
+		if (artistas!=null){
+			return artistas;
+		}
+		else {
+			return null;
 		}
 	}
 

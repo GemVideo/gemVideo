@@ -17,7 +17,9 @@ import javax.ws.rs.core.UriBuilder;
 import org.apache.commons.io.IOUtils;
 import org.glassfish.jersey.client.ClientConfig;
 
+import entidades.Artista;
 import entidades.Video;
+import modelo.negocio.ArtistaGestion;
 import modelo.negocio.VideoGestion;
 
 
@@ -193,24 +195,47 @@ public class ProcesarFicheros {
 
 	}
 	
-	public void procesarArtista(Videos video,ResultadosArtista artistaOk,boolean videoProcesado){
+	public void procesarArtista(Videos video,ResultadosArtista artista,boolean videoProcesado){
 		VideoGestion videoGestion=new VideoGestion();
 		Video videoNuevo= new Video();
 		
+		ArtistaGestion  artistaGestion= new ArtistaGestion();
+		Artista artistaNuevo=new Artista();
 		
 		
 		
 		//public Video( String titulo, String descripcion, String thumbnail, String url) {
 		
+		videoNuevo.setTitulo(video.getSnippet().getTitle());
+		videoNuevo.setDescripcion(video.getSnippet().getDescription());
+		videoNuevo.setUrl(video.getId().getVideoId());
+		videoNuevo.setThumbnail(video.getSnippet().getThumbnails().get(0).getHigh().getUrl());
+		
 		if (!videoProcesado){
+			List<Video> existeVideo = new ArrayList();
 			//grabar video
-			videoNuevo.setTitulo(video.getSnippet().getTitle());
-			videoNuevo.setDescripcion(video.getSnippet().getDescription());
-			videoNuevo.setUrl(video.getId().getVideoId());
-			videoNuevo.setThumbnail(video.getSnippet().getThumbnails().get(0).getHigh().getUrl());
-			videoGestion.registro(videoNuevo);
+			existeVideo=videoGestion.buscarVideos(videoNuevo.getTitulo());
+			if (existeVideo!=null)
+				videoGestion.registro(videoNuevo);
 		}
 		//grabar artista.
+		artistaNuevo.setNombre(artista.getArtist().getName());
+		artistaNuevo.setImagen(artista.getArtist().getImage().get(3).getText());
+		
+		List<Artista> artistaActual=artistaGestion.buscarArtista(artistaNuevo);
+		List<Video> videos = new ArrayList();
+		if (artistaActual==null){
+			videos.add(videoNuevo);
+			artistaNuevo.setListaVideos(videos);
+			artistaGestion.registro(artistaNuevo);
+		}
+		else{
+			videos=artistaActual.get(0).getListaVideos();
+			videos.add(videoNuevo);
+			artistaNuevo.setListaVideos(videos);
+			artistaGestion.actualiza(artistaNuevo);
+		}
+		
 	}
 	public  Resultados procesarVideosImportarDatos(int numVideos) {
 		this.numVideos=numVideos;

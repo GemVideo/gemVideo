@@ -1,6 +1,6 @@
 package importarVideos;
 
-public class Artista {
+public class Artistaa {
 	private Artist artist;
 
 	public Artist getArtist() {

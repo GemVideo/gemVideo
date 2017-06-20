@@ -8,6 +8,6 @@ $(document)
             anadirEvento();
         });
         function anadirEvento() {
-            $("#vista").toggleClass("isHide");
+            $("#vista").toggleClass("isHide2 isHide ");
         }
     });

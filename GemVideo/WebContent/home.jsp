@@ -2,14 +2,13 @@
 	pageEncoding="ISO-8859-1" import="java.util.List, entidades.*"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<% %>
 
 <%@ include file="templates/head.jsp"%>
 
 <body class="body">
 	<div class="container">
 		<%@ include file="templates/nav.jsp"%> 
-		<%@ inlcude file="templates/usuario.jsp" %>
+		<%@ include file="templates/usuario.jsp" %>
 		<div class="videos">
 			<h2>Videos mas recomendados</h2>
 			<div class="videos-lista">

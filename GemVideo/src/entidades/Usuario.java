@@ -8,6 +8,9 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 public class Usuario {
 	
@@ -16,10 +19,13 @@ public class Usuario {
 	private String nombre;
 	private String pass;
 	
-	
+	//si se ponen los dos a eager da error 
+	//cannot simultaneously fetch multiple bags: [entidades.Usuario.artistasFavoritos, entidades.Usuario.PlayLists]
 	@OneToMany 
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Artista> artistasFavoritos;
-	@OneToMany 
+	@OneToMany
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<PlayList> PlayLists;
 	
 	

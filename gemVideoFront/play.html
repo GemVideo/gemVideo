@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <title>gemVideo</title>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='icon' type='image/png' sizes='16x16' href='image/icon/favicon.ico'>
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js '></script>
+    <link href='css/style.css' rel='stylesheet'>
+</head>
+
+<body class="body">
+    <div class="container">
+        <div class="content-nav ">
+            <div class="logo  "><a href="index.html">gemVideo</a></div>
+            <div class="busqueda">
+                <form action="resultBusqueda.html" class="login">
+                    <div class="field">
+                        <i class="fa fa-search fa-2x" aria-hidden="true"></i>
+                        <input type="text" placeholder="contraseña" require><br>
+                    </div>
+                </form>
+            </div>
+            <div class="social "><i class="fa fa-instagram fa-2x" aria-hidden="true"></i><i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i>
+                <i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="usuario">
+            <div class="usuario-content">
+                <span>Eduardo</span>
+                <a href="perfil.html">perfil</a>
+                <a class="logout" href="index.htmt">Logout</a>
+            </div>
+        </div>
+        <!-- playVideo-->
+        <div class="main">
+            <div class="main-video">
+                <iframe class="iframe" src="https://www.youtube.com/embed/TPMEviaFWLg">
+                </iframe>
+                <div class="detalleVideo">
+                    <div class="detalleVideo-up">
+                        <h2>titulo de la cancio</h2>
+                        <div id="play1" class="agregarVideo">
+                            play
+                        </div>
+                         <div id="play2" class="agregarVideo">
+                            aleatorio
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="copy ">
+        <p>By gemVideo <i class="fa fa-copyright fa-1x" aria-hidden="true"></i> 2017</p>
+    </div>
+    <script>
+        $(document).ready(function () {
+            arrayVideos = ['dpuIuJYfPi0', 'Vn6N184C2aQ', 'TPMEviaFWLg'];
+            $urlInicial = "https://www.youtube.com/embed/";
+            $primerVideo = "dpuIuJYfPi0";
+            $configVideo = "?autoplay=1&loop=1&playlist=";
+            $listaVideos = "X0Y61bu0TKw,Vn6N184C2aQ,TPMEviaFWLg";
+            $('#play1').click(function () {
+                $('.iframe').attr("src", listaOrdenada($arrayVideos));
+            });
+            $('#play2').click(function () {
+                $('.iframe').attr("src", listaDesordenada(arrayVideos));
+            });
+            function listaDesordenada(arrayVideos) {
+               return  arrayVideos = arrayVideos.sort(function () { 
+                    return Math.random() - 0.5 });
+
+               // return $urlInicial + $primerVideo + $configVideo + $listaVideos;
+            }
+        });
+    </script>
+    <!-- FUENTE DE ICONOS DE FONTAWESOME -->
+    <script async type='text/javascript' src='https://use.fontawesome.com/493ef35f7a.js'></script>
+    <!-- HOJA DE JAVASCRIPT -->
+    <script async type='text/javascript' src='js/js.js'></script>
+    <!-- CAMBIA EL ESTILO DE FUENTE EN GGOGLE FONT -->
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans|Oswald|Rock+Salt' rel='stylesheet'>
+</body>
+
+</html>

@@ -15,17 +15,17 @@
 
 		<div class="content-header">
 			<h2>Registro de usuario</h2>
-			<form:form modalAttribute="usuario">
+			<form:form modelAttribute="registroCommand">
 				<div class="field">
 					<i class="fa fa-hand-o-right fa-2x" aria-hidden="true"></i>
 					<form:errors path="nombre" />
-					<form:input path="nombre" placeholder="contraseña" require />
+					<form:input path="nombre" placeholder="Username" required="true" />
 					<br>
 				</div>
 				<div class="field">
 					<i class="fa fa-key fa-2x" aria-hidden="true"></i>
-					<form:errors path="password" />
-					<form:input path="password" placeholder="contraseña" require />
+					<form:errors path="pass" />
+					<form:input path="pass" placeholder="contraseña" required="true" />
 					<br>
 				</div>
 				<input class="btnRegistro" type="submit" value="REGISTRAR">

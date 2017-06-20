@@ -21,11 +21,12 @@
                         <img src="<%=artista.getImagen() %>" alt="">
                         <%} %>
                     <a class="favorito" href="actualizarArtistaFavorito.do?id=<%=artista.getId()%>">
-                    <i class="fa fa-heart fa-2x 
-                     <%if(usuario.getArtistasFavoritos().contains(artista)){
-                    	out.print("colorFavorito");
-                    	}%>
-                    " aria-hidden="true"></i>
+                    <%if(usuario.getArtistasFavoritos().contains(artista)){%>
+                    	<i class="fa fa-heart fa-2x colorFavorito" aria-hidden="true"></i>
+                    	<%                    	
+                    	}else{%>
+                    <i class="fa fa-heart fa-2x" aria-hidden="true"></i>
+                    <%} %>
                     </a>
 
                     <span><%=artista.getNombre() %></span>

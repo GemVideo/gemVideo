@@ -22,10 +22,17 @@ public class ArtistaGestion {
 		List<Artista> artistas = artistaRepo.findByNombre(busqueda);
 		List<Artista> listaCuatroArtistas = new ArrayList<>();
 		if (artistas != null) {
-			for (int i = 0; i < 4; i++) {
-				listaCuatroArtistas.add(artistas.get(i));
+			if (artistas.size() < 4) {
+				for (int i = 0; i < artistas.size(); i++) {
+					listaCuatroArtistas.add(artistas.get(i));
+				}
+			} else {
+				for (int i = 0; i < 4; i++) {
+					listaCuatroArtistas.add(artistas.get(i));
+				}
 			}
 		}
+
 		return listaCuatroArtistas;
 	}
 
@@ -33,39 +40,34 @@ public class ArtistaGestion {
 
 		return artistaRepo.findOne(idArtista);
 	}
-	
+
 	@Transactional
-	public boolean registro(Artista artista){
+	public boolean registro(Artista artista) {
 		List<Artista> artistas = artistaRepo.findByNombre(artista.getNombre());
-		if (artistas.size()==0){
+		if (artistas.size() == 0) {
 			artistaRepo.save(artista);
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
-	
+
 	@Transactional
-	public boolean actualiza(Artista artista){
+	public boolean actualiza(Artista artista) {
 		List<Artista> artistas = artistaRepo.findByNombre(artista.getNombre());
-		if (artistas.size()>0){
+		if (artistas.size() > 0) {
 			artistaRepo.save(artista);
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
-	
-	
-	
-	public List<Artista>  buscarArtista(Artista artista){
+
+	public List<Artista> buscarArtista(Artista artista) {
 		List<Artista> artistas = artistaRepo.findByNombre(artista.getNombre());
-		if (artistas!=null){
+		if (artistas != null) {
 			return artistas;
-		}
-		else {
+		} else {
 			return null;
 		}
 	}

@@ -16,7 +16,7 @@ public class ArtistaController {
 	ArtistaGestion artistaGestion;
 	
 	@RequestMapping("/mostrarArtista.do")
-	public String mostrarArtista(@RequestParam("idArtista")Integer idArtista,Model model){
+	public String mostrarArtista(@RequestParam("id")Integer idArtista,Model model){
 		Artista artista = artistaGestion.mostrarArtista(idArtista);
 		model.addAttribute("artista",artista);
 		

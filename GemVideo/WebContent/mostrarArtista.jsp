@@ -7,10 +7,10 @@
 <body class="body">
 	<div class="container">
 		<%@ include file="templates/nav.jsp"%>
-		<%@ inlcude file="templates/usuario.jsp"%>
+		<%@ include file="templates/usuario.jsp"%>
 		<!-- mostrarArtista-->
 		  <div class="artistaContent">
-		  <%Usuario usuario=(Usuario)session.getAttribute("usuario"); 
+		  <% 
 		  	Artista artista=(Artista)request.getAttribute("artista");%>
             <div class="artistaContent-artista">
                 <h3>ARTISTA</h3>

@@ -7,7 +7,7 @@
 <body class="body">
 	<div class="container">
 		<%@ include file="templates/nav.jsp"%>
-		<%@ inlcude file="templates/usuario.jsp"%>
+		<%@ include file="templates/usuario.jsp"%>
 		<!-- resultBusqueda-->
 		<div class="result">
 			<div class="result-espacio">

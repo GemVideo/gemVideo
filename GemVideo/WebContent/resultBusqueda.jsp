@@ -42,7 +42,7 @@
 					%>
 
 					<div class="item">
-						<a href="mostrarArtista.do?id=<%=v.getId()%>"> <img
+						<a href="playVideo.do?id=<%=v.getId()%>"> <img
 							src="<%=v.getThumbnail()%>" alt="">
 						</a> <span class="titulo"><%=v.getTitulo()%>/span> 
 					</div>
